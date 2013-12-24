@@ -1,4 +1,2 @@
-Competencia-Development
+Competencia-De-Caballos
 =======================
-
-Competencia de Caballos Versión Desarrollo

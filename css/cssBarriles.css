@@ -1,0 +1,54 @@
+#competidores{
+    width: 590px;
+    color: #000000;
+    border-radius: 5px;
+    margin-top: 5px;
+    background-image: url('retina_wood.png');
+   height: 500px;
+    display: inline-block;
+    
+}
+#list{
+    width: 590px;
+    height: 500px;
+    display: inline-block;
+}
+h1{
+    color: #FFFFFF;
+}
+select{
+    width: 150px;
+}
+
+
+#ranking{
+    width: 400px;
+    color: #000000;
+    background-image: url('retina_wood.png');
+    border-radius: 5px;
+    margin-top: 5px;
+    
+}
+#rankings{
+    width: 400px;
+    display: inline-block;
+    vertical-align: top;
+}
+article{
+    height: 250px;
+    overflow-y: auto;
+}
+#general{
+    margin-top: 10px;
+}
+#rankG{
+    width: 400px;
+    overflow-y: auto;
+    color: #000000;
+    background-image: url('retina_wood.png');
+    left: 500px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+

@@ -23,7 +23,7 @@ class clsCategoria extends clsConexion{
     public function __destruct(){}
     
     public function listarTabla($p=NULL){
-        $where = is_null($p) ? "" : " where upper(categoria) like '%".  strtoupper($p['nombre'])."%'";
+        //$where = is_null($p) ? "" : " where upper(nombre) like '%".  strtoupper($p['nombre'])."%'";
         $i = 1;
         $str = "<table id='lstable'>";
         $str .="<tr>
@@ -32,14 +32,14 @@ class clsCategoria extends clsConexion{
                         <td><label>Edad M&aacute;xima</label></td>
                         
                     </tr>";
-        $r = $this->filtro("select categoria, edad_min, edad_max, id_categoria from categoria $where order by categoria");
+        $r = $this->filtro("select * FROM ver_categoria");
         $rt =  $this->getNumRows();
             while ($row = $this->proximo($r)) {
                $str .= "<tr>
                             <td>$row[0]</td>
                             <td>$row[1]</td>
                             <td>$row[2]</td>
-                            <td class='topbuttons'>
+                            <td>
                                 <img id='imgf$i' title='Modificar' src='../img/up_med.png'  onclick=\"modificar(".$i++.",'$row[0]',$row[1],$row[2],$row[3])\">
                                 <img title='Eliminar'  src='../img/del_med.png' onclick=\"eliminar('$row[3]')\">
                             </td>
@@ -52,7 +52,7 @@ class clsCategoria extends clsConexion{
     }
     
     public function insertar(){
-        $out = $this->filtro("insert into categoria (categoria,edad_min,edad_max) values ('$this->nombre',$this->agemin,$this->agemax)") ? true : false;
+        $out = $this->filtro("SELECT insertar_categoria('$this->nombre',$this->agemin,$this->agemax)") ? true : false;
         $this->cerrarConexion();
         return $out;
     }
@@ -61,13 +61,14 @@ class clsCategoria extends clsConexion{
         $this->nombre = $p['nombre'];
         $this->agemin = $p['agemin'];
         $this->agemax = $p['agemax'];
-        $out = $this->filtro("update categoria set categoria= '$this->nombre', edad_min=$this->agemin, edad_max=$this->agemax where id_categoria = '$p[id]'") ? true : false;
+        
+        $out = $this->filtro("SELECT actualizar_categoria($p[id],'$this->nombre',$this->agemin,$this->agemax)") ? true : false;
         $this->cerrarConexion();
         return $out;
     }
     
     public function eliminar($p=NULL){
-        $out = $this->filtro("delete from categoria where id_categoria = '$p[id]'") ? true : false;
+        $out = $this->filtro("SELECT eliminar_categoria($p[id])") ? true : false;
         $this->cerrarConexion();
         return $out;
     }

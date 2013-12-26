@@ -1,8 +1,3 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 function buscar(){
     var r = send_form("../controladores/ctrCategoria.php", "opc=BS&nombre=" + document.getElementById("nombre").value +
                                                                  "&agemin=" + document.getElementById("min").value    +
@@ -49,8 +44,4 @@ function eliminar(id){
 function loadStore(){
     var r = send_form("../controladores/ctrCategoria.php", "opc=LS");
     if (r) document.getElementById("list").innerHTML = r;
-}
-
-window.onload = function(){
-  
 }

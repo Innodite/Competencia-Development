@@ -10,6 +10,6 @@ $servidor = "localhost";
 $usuario  = "postgres";
 $clave    = "1234";
 $puerto   = "5432";
-$bd       = "competencia";
+$bd       = "comp-devel";
 
 ?>

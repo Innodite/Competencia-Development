@@ -9,7 +9,7 @@ class clsConexion{
   public function __construct() {
       include ("dbConfig.php");
       $this->dirbase  = $dirbase;
-      $this->conexion = pg_connect("user=$usuario password=$clave port=$puerto dbname=$bd host=$servidor");      
+      $this->conexion = pg_connect("user=postgres password=1234 port=5432 dbname=comp-devel host=localhost");      
   }
   public function __destruct() {
       

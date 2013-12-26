@@ -15,7 +15,7 @@ if($_POST['username']== 'anthony' && $_POST['password']== '1234'){
      $_SESSION['username'] = $_POST['username'];
      $_SESSION['password'] = $_POST['password'];
      
-     header('Location: ../competencia/vistas/vistaCompetencia.php');
+     header('Location: ../competencia-development/vistas/vistaCompetencia.php');
      
 }
 else{

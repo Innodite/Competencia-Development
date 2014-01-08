@@ -1,11 +1,13 @@
 
 function buscar(){
-    var r = send_form("../controladores/ctrModoCompetencia.php", "opc=BS&nombre=" + document.getElementById("txtNombre").value);
-    if (r) document.getElementById("list").innerHTML = r;
+
+  var r = send_form("../controladores/ctrModoCompetencia.php", "opc=BS&nombre=" + document.getElementById("txtNombre").value);
+   if (r) document.getElementById("list").innerHTML = r;
 }
 
 function cargar(){
-    var r = send_form("../controladores/ctrModoCompetencia.php", "opc=IN&nombre=" + document.getElementById("txtNombre").value);
+    var r = send_form("../controladores/ctrModoCompetencia.php", "opc=IN&nombre=" + document.getElementById("txtNombre").value + 
+                                                                        "&modalidad="  +          document.getElementById("lblModalidad").value);
     if (r) loadStore();
 }
 

@@ -14,13 +14,12 @@ if (isset($_POST['opc'])){
     $tip_comp    = isset($_POST['tip_comp']) ? $_POST['tip_comp'] : null;
     $porcp         = isset($_POST['porcp']) ? $_POST['porcp'] : null;
     $porcc         = isset($_POST['porcc']) ? $_POST['porcc'] : null;
-    $nombre      = isset($_POST['nombre']) ? $_POST['nombre'] : null;
+   
     $rondas       = isset($_POST['rondas']) ? $_POST['rondas'] : null;
     $categoria   = isset($_POST['categoria']) ? $_POST['categoria'] : null;
     $id               = isset($_POST['id'])     ? $_POST['id']     : null;
     
-    $p = array("fecha"=>$fecha,"tip_comp"=>$tip_comp,"porcp"=>$porcp,"porcc"=>$porcc,
-                     "nombre"=>$nombre,"rondas"=>$rondas,"categoria"=>$categoria, "id"=>$id);
+    $p = array("fecha"=>$fecha,"tip_comp"=>$tip_comp,"porcp"=>$porcp,"porcc"=>$porcc,"rondas"=>$rondas,"categoria"=>$categoria, "id"=>$id);
     $ob = new clsCompetencia($p);
     
     switch ($_POST['opc']) {

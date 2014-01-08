@@ -18,9 +18,18 @@
             <form>
                 <table>
                     <tr>
-                        <td><label>Modo De Competencia</label></td>
+                        <td>Modo De Competencia</td>
+                        <td>Modalidad</td>
+                    </tr>
+                    <tr>
                         <td>
                             <input type="text" name="txtNombre" id="txtNombre" value="" autofocus required>
+                        </td>
+                        <td>
+                            <select id="lblModalidad">
+                                <option  value="individual">Individual</option>
+                                <option  value="grupo">Grupo</option>
+                            </select>
                         </td>
                         <td> 
                             <img id="imgadd" title="Agregar" src="../img/add_med.png" onclick="cargar()">

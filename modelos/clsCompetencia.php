@@ -26,7 +26,7 @@ class clsCompetencia  extends clsConexion{
              $this->tip_comp   = $p['tip_comp'];
              $this->porcp        = $p['porcp'];
              $this->porcc        = $p['porcc'];
-             $this->nombre     = $p['nombre'];
+           
              $this->rondas      = $p['rondas'];
              $this->categoria  = $p['categoria'];
          }
@@ -34,7 +34,7 @@ class clsCompetencia  extends clsConexion{
     public function __destruct(){}
     
     public function listarTabla($p=NULL){
-        $where = is_null($p) ? "" : " where fecha = '".  strtoupper($p['fecha'])."' and tipo_comp = '$p[tip_comp]'";
+        $where = is_null($p) ? "" : " where fecha = '".  strtoupper($p['fecha'])."' and id_modo_competencia = '$p[tip_comp]'";
         $i = 1;
         $str = "<table id='lstable'>
                         <tr>
@@ -46,7 +46,7 @@ class clsCompetencia  extends clsConexion{
                             <td class='truco'><label>Vueltas</label></td>
                             <td class='truco'><label>Categoria</label></td>
                         </tr>";
-        $r = $this->filtro("select id_competencia,fecha,tipo_comp,porc_premio,porc_caja,nombre,nro_vueltas,categoria from competencia $where order by fecha");
+        $r = $this->filtro("select id_competencia,fecha,id_modo_competencia,porc_premio,porc_casa,vueltas,id_categoria from competencia $where order by fecha");
         $rt =  $this->getNumRows();
             while ($row = $this->proximo($r)) {
                $vtc = $this->utilidades->getLsTipoCompetencia($row[2],TRUE);
@@ -91,17 +91,17 @@ class clsCompetencia  extends clsConexion{
     }
 
     public function insertar(){
-        $sql = "insert into competencia (fecha,tipo_comp,porc_premio,porc_caja,nombre,nro_vueltas,categoria,sts) 
+        $sql = "insert into competencia (fecha,id_modo_competencia,porc_premio,porc_casa,vueltas,id_categoria,sts) 
                                                         values
-                                                                                ('$this->fecha',$this->tip_comp,$this->porcp,$this->porcc,'$this->nombre',$this->rondas,'$this->categoria','VAL')";
+                                                                                ('$this->fecha',$this->tip_comp,$this->porcp,$this->porcc,$this->rondas,'$this->categoria','VAL')";
         $out = ($this->filtro($sql)) ? true : false;
         $this->cerrarConexion();
         return $out;
     }
     
     public function modificar($p=NULL){
-        $out = $this->filtro("update competencia set fecha = '$this->fecha', tipo_comp = $this->tip_comp, porc_premio = $this->porcp, porc_caja = $this->porcc, nombre='$this->nombre', 
-                                                     nro_vueltas = $this->rondas, categoria = '$this->categoria'
+        $out = $this->filtro("update competencia set fecha = '$this->fecha', id_modo_competencia = $this->tip_comp, porc_premio = $this->porcp, porc_casa = $this->porcc, 
+                                                     vueltas = $this->rondas, id_categoria = '$this->categoria'
                               where id_competencia = $this->id") ? true : false;
         $this->cerrarConexion();
         return $out;

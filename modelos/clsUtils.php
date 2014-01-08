@@ -21,9 +21,9 @@ class clsUtils extends clsConexion{
     public function __destruct(){}
     
     public function getLsTipoCompetencia($selected=NULL,$single=NULL){
-        $where = is_null($selected) ? "" : " where cod_comp = '$selected'";
+        $where = is_null($selected) ? "" : " where id_modo_competencia = '$selected'";
         $salida = array();
-        $r = $this->filtro("select cod_comp,nombre from tipo_competencia $where order by nombre");
+        $r = $this->filtro("select id_modo_competencia,nombre from modo_competencia $where order by nombre");
         if (is_null($single)){
             while($row = $this->proximo($r)){
                 $salida[] = array("id"=>$row[0],"nombre"=>$row[1]);
@@ -38,7 +38,7 @@ class clsUtils extends clsConexion{
     public function getLsCategorias($selected=NULL,$single=NULL){
         $where = is_null($selected) ? "" : " where id_categoria = $selected";
         $salida = array();
-        $r = $this->filtro("select id_categoria, categoria from categoria $where order by categoria");
+        $r = $this->filtro("select id_categoria, nombre from categoria $where order by nombre");
         if (is_null($single)){
             while($row = $this->proximo($r)){
                 $salida[] = array("id"=>$row[0],"nombre"=>  strtoupper($row[1]));
@@ -61,10 +61,10 @@ class clsUtils extends clsConexion{
                                                                         and c.sts = 'VAL'";
         $salida = array();
         $r = $this->filtro("select c.id_competencia, 
-                                              (c.fecha || ' / ' || tc.nombre || ' / ' || ctg.categoria) as nombre
+                                              (c.fecha || ' / ' || tc.nombre || ' / ' || ctg.nombre) as nombre
                                     from competencia c
-                                            inner join tipo_competencia tc on tc.cod_comp = c.tipo_comp
-                                            inner join categoria ctg on ctg.id_categoria = c.categoria 
+                                            inner join modo_competencia tc on tc.id_modo_competencia = c.id_modo_competencia
+                                            inner join categoria ctg on ctg.id_categoria = c.id_categoria 
                                     $where");
         if (is_null($single)){
             while($row = $this->proximo($r)){

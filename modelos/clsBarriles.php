@@ -22,7 +22,7 @@ class clsBarriles extends clsConexion{
     public function __destruct(){}
     
 public function cargarCompetencia(){
-     $str = "<option value='0'>Seleccione</option>";
+     $str = "<option value=''>Seleccione</option>";
                 $sql = "select id_competencia,(tp.nombre,cat.categoria) as nombre FROM competencia as comp,tipo_competencia as tp,categoria as cat WHERE tipo_comp = cod_comp AND comp.categoria = id_categoria AND sts='VAL' AND fecha = '$this->fecha'";
                 $datos = $this->filtro($sql);
                 while($columna = $this->proximo($datos)){
@@ -35,7 +35,7 @@ public function iniciarCompetencia(){
        $this->filtro($update);
        
         $i = 0;
-        $sql= "SELECT nro_vueltas FROM competencia WHERE id_competencia= '$this->competencia'";
+        $sql= "SELECT vueltas FROM competencia WHERE id_competencia= '$this->competencia'";
         $dats = $this->filtro($sql);
         $arreglo= $this->proximo($dats);
         $this->ronda = 1; 
@@ -48,9 +48,9 @@ public function iniciarCompetencia(){
                     <td>Tiempo</td>
                     <td><label>Ronda $this->ronda-$this->total&nbsp;&nbsp;</label><img id='flecha' src='../img/arrow455.png' width='25' height='25' title='Siguiente Ronda' onclick=\"nextRound($this->ronda,'$this->total','$this->competencia')\" ></td>
                 </tr>";
-        $r = $this->filtro("select id_inscripcion,comp.nombre,competencia "
+        $r = $this->filtro("select id_inscripcion,comp.nombre,id_competencia "
                 . "from inscripcion,competidor as comp  "
-                . "where ci_persona= comp.ci AND competencia= '$this->competencia'  "
+                . "where cedula= comp.cedula AND id_competencia= '$this->competencia'  "
                 . "order by random()");
         
         $rt =  $this->getNumRows();
@@ -88,7 +88,7 @@ public function agregarTiempo(){
                     <td>Competidor</td>
                     <td>Tiempo</td>
                 </tr>";
-        $r = $this->filtro("select nombre, tiempo FROM inscripcion as insc,competidor as comp,(select  DISTINCT ON (id_inscripcion) id_inscripcion , tiempo from ranking order by id_inscripcion,tiempo ASC) rank WHERE rank.id_inscripcion = insc.id_inscripcion AND insc.ci_persona=comp.ci order by rank.tiempo");
+        $r = $this->filtro("select nombre, tiempo FROM inscripcion as insc,competidor as comp,(select  DISTINCT ON (id_inscripcion) id_inscripcion , tiempo from ranking order by id_inscripcion,tiempo ASC) rank WHERE rank.id_inscripcion = insc.id_inscripcion AND insc.cedula=comp.cedula order by rank.tiempo");
         $rt =  $this->getNumRows();
             while ($row = $this->proximo($r)) {
                $str .= "<tr>
@@ -126,7 +126,7 @@ public function nextRound(){
                 </tr>";
         $r = $this->filtro("select id_inscripcion,comp.nombre,competencia "
                 . "from inscripcion,competidor as comp  "
-                . "where ci_persona= comp.ci AND competencia= '$this->competencia'  "
+                . "where cedula= comp.cedula AND competencia= '$this->competencia'  "
                 . "order by random()");
         
         $rt =  $this->getNumRows();

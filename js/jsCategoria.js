@@ -2,7 +2,7 @@ function buscar(){
     var r = send_form("../controladores/ctrCategoria.php", "opc=BS&nombre=" + document.getElementById("nombre").value +
                                                                  "&agemin=" + document.getElementById("min").value    +
                                                                  "&agemax=" + document.getElementById("max").value);
-    if (r) document.getElementById("list").innerHTML = r;
+    if (r!='NULL') document.getElementById("list").innerHTML = r;
 }
 
 function cargar(){

@@ -23,12 +23,12 @@
                     <td>Costo</td>
                 </tr>
                 <tr>
-                    <td><input id="cedula"  type="text"  onkeyup="verificarCi()" name="txtCedula" value="" required></td>
-                    <td><input id="competidor" type="text"  name="txtCompetidor" value="" required></td>
-                    <td><input id="edad" type="text" name="txtEdad" onkeyup="loadCompetencia()"  value="" required></td>
+                    <td><input id="cedula"  type="text"  onkeyup="verificarCi()" name="txtCedula" required></td>
+                    <td><input id="competidor" type="text"  name="txtCompetidor"  required></td>
+                    <td><input id="edad" type="text" name="txtEdad" onkeyup="loadCompetencia()"   required></td>
                     <td><select id="competencia"></select></td>                     
                     <td>
-                        <input id="costo" type="text" name="txtCosto" value="" required>
+                        <input id="costo" type="text" name="txtCosto" required>
                         <input type="hidden" name="swper" id="swper" value="0">
                     </td>  
                     <td>

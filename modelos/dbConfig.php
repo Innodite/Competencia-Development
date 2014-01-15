@@ -6,7 +6,7 @@
  */
 
 $dirbase  = "competencia";
-$servidor = "localhost";
+$servidor = "127.0.0.1";
 $usuario  = "postgres";
 $clave    = "1234";
 $puerto   = "5432";

@@ -17,12 +17,13 @@
         <form > <!-- action="../controladores/ctrCompetencia.php" method="POST" -->
             <table>
                 <tr>
-                    <td class="truco"><label>Fecha</label></td>
-                    <td class="truco"><label>Competencia</label></td>
-                    <td class="truco"><label>Categoria</label></td>
-                     <td class="truco"><label>% Premio</label></td>
-                    <td class="truco"> <label>% Casa</label></td>
-                    <td class="truco"><label>Vueltas</label></td>
+                    <td><label>Fecha</label></td>
+                    <td><label>Competencia</label></td>
+                    <td><label>Categoria</label></td>
+                     <td><label>% Premio</label></td>
+                    <td><label>% Casa</label></td>
+                    <td><label>Inscripcion</label></td>
+                    <td><label>Vueltas</label></td>
                     
                 </tr>
                 <tr>
@@ -36,14 +37,18 @@
                         <select id="categoria"></select>
                     </td>
                     <td>
-                        <input id="premio" type="text" name="txtPremio" value="" onkeyup="evalPorcUp('premio','casa')" required>
+                        <input class="size" id="premio" type="text" name="txtPremio"  onkeyup="evalPorcUp('premio','casa')" required>
                     </td>
                     <td>
-                        <input id="casa" type="text" name="txtCasa" value="" readonly="" required>
+                        <input class="size" id="casa" type="text" name="txtCasa" readonly="" required>
+                    </td>
+                     <td>
+                        <input id="inscripcion" type="text" name="txtInscripcion" required>
                     </td>
                     <td>
-                        <input id="rondas" type="text" name="txtVueltas" value="" required>
+                        <input class="size" id="rondas" type="text" name="txtVueltas" required>
                     </td>
+                   
                     <td>
                         <img id="imgadd"  title="Agregar" src="../img/add_med.png" onclick="cargar()">
                         <img id="imgbus"  title="Buscar"  src="../img/lupa_med.png" onclick="buscar()">

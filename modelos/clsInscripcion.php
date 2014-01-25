@@ -13,9 +13,8 @@ Javier Urbano
 */
 class clsInscripcion extends clsConexion{
 	private $id_inscripcion;
-	private $ci_persona;
+	private $cedula;
 	private $competencia;
-	private $costo;
         private $nombre;
         private $edad;
         private $sw;
@@ -26,9 +25,8 @@ class clsInscripcion extends clsConexion{
             $this->utilidades = new clsUtils();
             if (!is_null($p)){
 		$this->id_inscripcion = $p['id'];
-		$this->ci_persona = $p['txtCedula'];
+		$this->cedula = $p['txtCedula'];
 		$this->competencia = $p['txtCompetencia'];
-		$this->costo = $p['txtCosto'];
                 $this->nombre = $p['nombre'];
                 $this->edad = $p['edad'];
                 $this->sw = $p['swper'];
@@ -37,35 +35,15 @@ class clsInscripcion extends clsConexion{
 
 	public function __destruct(){}
 
-	public function getIdInscripcion(){
-		return $this->id_inscripcion;
-	}
-
-	public function getCiPersona(){
-		return $this->ci_persona;
-	}
-
-	public function getCategoria(){
-		return $this->categoria;
-	}
-
-	public function getCompetencia(){
-		return $this->competencia;
-	}
-
-	public function getCosto(){
-		return $this->costo;
-	}
-
 	public function buscar(){
 		$encontro = false;		
 
-		$sql = "SELECT * FROM inscripcion WHERE ci_persona = '$this->ci_persona'";
+		$sql = "SELECT * FROM inscripcion WHERE cedula = '$this->cedula'";
 		$datos = $this->filtro($sql);
 
 		if ($columna = $conex->proximo($datos)){
 			$this->id_inscripcion = $columna[0];
-			$this->ci_persona     = $columna[1];
+			$this->cedula     = $columna[1];
 			$this->categoria      = $columna[2];
 			$this->competencia    = $columna[3];
 			$this->costo          = $columna[4];
@@ -79,8 +57,8 @@ class clsInscripcion extends clsConexion{
         
         public function chkCi($p=NULL){
             $out = "";
-            $where = is_null($p) ? " where ci = '$this->ci_persona'" : " where ci = '$p[txtCedula]'";
-            $sql = "select ci, nombre,edad from competidor $where";
+            $where = is_null($p) ? " where cedula = '$this->cedula'" : " where cedula = '$p[txtCedula]'";
+            $sql = "select cedula, nombre,edad from competidor $where";
             $r = $this->filtro($sql);
             if ($this->getNumRows() > 0){
                 $fila = $this->proximo($r);
@@ -91,18 +69,15 @@ class clsInscripcion extends clsConexion{
         }
         
 	public function insertar($p=NULL){
-            $this->IniciarTrans();
-            if ($this->sw)
-                if (!$this->filtro("INSERT INTO competidor(ci,nombre,edad) values ('$this->ci_persona','$this->nombre','$this->edad')")) $this->error++;
+         $this->filtro("INSERT INTO competidor(cedula,nombre,edad) values ('$this->cedula','$this->nombre','$this->edad')");
               
-            if (!$this->filtro("INSERT INTO inscripcion(ci_persona,competencia,costo) VALUES ('$this->ci_persona','$this->competencia','$this->costo')")) $this->error++;
-            $this->EndTrans();
-		$this->cerrarConexion();
-            return json_encode(array("R"=>($this->error) ? FALSE : TRUE));
+         $out=  $this->filtro("INSERT INTO inscripcion(cedula,id_competencia) VALUES ('$this->cedula','$this->competencia')");
+		
+            return ($out);
 	}
 
 	public function modificar($p=NULL){
-        $out = $this->filtro("update inscripcion set competencia = '$this->competencia', costo = $this->costo
+        $out = $this->filtro("update inscripcion set id_competencia = '$this->competencia'
                               where id_inscripcion = $this->id_inscripcion") ? true : false;
         $this->cerrarConexion();
         return $out;
@@ -134,7 +109,7 @@ class clsInscripcion extends clsConexion{
     }
     
     public function listarTabla($p=NULL){
-        $where = is_null($p) ? "" : " where competencia=cod_comp";
+        $where = is_null($p) ? "" : " where id_competencia=cod_comp";
         $i = 1;
         $str = "<table id='lstable'> 
                 <tr>
@@ -142,21 +117,20 @@ class clsInscripcion extends clsConexion{
                     <td>Competidor</td>
                     <td>Edad</td>
                     <td>Competencia</td>
-                    <td>Costo</td>
+                   
                 </tr>";
         $r = $this->filtro("select  i.id_inscripcion,
-                                            i.ci_persona,
+                                            i.cedula,
                                             co.nombre,
                                             co.edad,
-                                            tp.nombre,
-                                            i.costo 
+                                            mc.nombre
                                     FROM inscripcion i,
                                          competidor co,
                                          competencia c,
-                                         tipo_competencia tp 
-                                    WHERE c.id_competencia= i.competencia
-                                          and co.ci= i.ci_persona
-                                          and c.tipo_comp = tp.cod_comp
+                                         modo_competencia mc 
+                                    WHERE c.id_competencia= i.id_competencia
+                                          and co.cedula= i.cedula
+                                          and c.id_modo_competencia = mc.id_modo_competencia
                                     ORDER BY 3");
         $rt =  $this->getNumRows();
             while ($row = $this->proximo($r)) {

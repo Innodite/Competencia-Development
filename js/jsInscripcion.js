@@ -5,7 +5,6 @@
 function buscar(){
    var r = send_form("../controladores/ctrInscripcion.php", "opc=BS&txtCedula=" + document.getElementById("cedula").value +
                                                                  "&txtCompetencia=" + document.getElementById("competencia").value +
-                                                                 "&txtCosto=" + document.getElementById("costo").value +
                                                                  "&nombre=" + document.getElementById("competidor").value +
                                                                  "&edad=" + document.getElementById("edad").value);
     if (r) document.getElementById("list").innerHTML = r;
@@ -13,7 +12,6 @@ function buscar(){
 function cargar(){
     var r = send_form("../controladores/ctrInscripcion.php", "opc=IN&txtCedula=" + document.getElementById("cedula").value +
                                                                  "&txtCompetencia=" + document.getElementById("competencia").value +
-                                                                 "&txtCosto=" + document.getElementById("costo").value +
                                                                  "&nombre=" + document.getElementById("competidor").value +
                                                                  "&edad=" + document.getElementById("edad").value +
                                                                  "&swper=" + document.getElementById("swper").value);

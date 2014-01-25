@@ -11,10 +11,9 @@ class clsCompetencia  extends clsConexion{
     private $tip_comp;
     private $porcp;
     private $porcc;
-    private $nombre;
+    private $inscripcion;
     private $rondas;
     private $categoria;
-    
     private $utilidades;
     
     public function __construct($p=NULL){
@@ -26,7 +25,7 @@ class clsCompetencia  extends clsConexion{
              $this->tip_comp   = $p['tip_comp'];
              $this->porcp        = $p['porcp'];
              $this->porcc        = $p['porcc'];
-           
+              $this->inscripcion        = $p['inscripcion'];
              $this->rondas      = $p['rondas'];
              $this->categoria  = $p['categoria'];
          }
@@ -40,25 +39,27 @@ class clsCompetencia  extends clsConexion{
                         <tr>
                             <td class='truco'><label>Fecha</label></td>
                             <td class='truco'><label>Competencia</label></td>
+                            <td class='truco'><label>Categoria</label></td>
                             <td class='truco'><label>% Premio</label></td>
                             <td class='truco'><label>% Casa</label></td>
-                            <td class='truco'><label>Nomb. Comp</label></td>
+                            <td class='truco'><label>Inscripcion</label></td>
                             <td class='truco'><label>Vueltas</label></td>
-                            <td class='truco'><label>Categoria</label></td>
+                            
                         </tr>";
-        $r = $this->filtro("select id_competencia,fecha,id_modo_competencia,porc_premio,porc_casa,vueltas,id_categoria from competencia $where order by fecha");
+        $r = $this->filtro("select id_competencia,fecha,id_modo_competencia,id_categoria,porc_premio,porc_casa,monto_inscripcion,vueltas from competencia $where order by fecha");
         $rt =  $this->getNumRows();
             while ($row = $this->proximo($r)) {
                $vtc = $this->utilidades->getLsTipoCompetencia($row[2],TRUE);
-               $vct = $this->utilidades->getLsCategorias($row[7],TRUE);
+               $vct = $this->utilidades->getLsCategorias($row[3],TRUE);
                $str .= "<tr>
                             <td class='lstb_med'>$row[1]</td>
                             <td class='lstb_med'>". $vtc[0] ."</td>
-                            <td class='lstb_small'>$row[3]</td>
-                            <td class='lstb_small'>$row[4]</td>
-                            <td class='lstb_large0'>$row[5]</td>
-                            <td class='lstb_small'>$row[6]</td>
                             <td class='lstb_med'>$vct[0]</td>
+                            <td class='lstb_small'>$row[4]</td>
+                            <td class='lstb_small'>$row[5]</td>
+                            <td class='lstb_large0'>$row[6]</td>
+                            <td class='lstb_small'>$row[7]</td>
+                            
                             <td class='topbuttons'>                                                                             
                                 <img id='imgf$i'class='puntero' title='Modificar' src='../img/up_med.png'  onclick=\"modificar(".$i++.",$row[0],'$row[1]',$row[2],$row[3],$row[4],'$row[5]',$row[6],'$row[7]')\">
                                 <img class='puntero' title='Eliminar'  src='../img/del_med.png' onclick=\"eliminar('$row[0]')\">
@@ -91,9 +92,9 @@ class clsCompetencia  extends clsConexion{
     }
 
     public function insertar(){
-        $sql = "insert into competencia (fecha,id_modo_competencia,porc_premio,porc_casa,vueltas,id_categoria,sts) 
+        $sql = "insert into competencia (fecha,id_modo_competencia,porc_premio,porc_casa,monto_inscripcion,vueltas,id_categoria,sts) 
                                                         values
-                                                                                ('$this->fecha',$this->tip_comp,$this->porcp,$this->porcc,$this->rondas,'$this->categoria','VAL')";
+                                                                                ('$this->fecha',$this->tip_comp,$this->porcp,$this->porcc,$this->inscripcion,$this->rondas,'$this->categoria','VAL')";
         $out = ($this->filtro($sql)) ? true : false;
         $this->cerrarConexion();
         return $out;

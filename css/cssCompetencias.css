@@ -1,0 +1,55 @@
+#rankings{
+    width: 400px;
+    height: 500px;
+    display: inline-block;
+    vertical-align: top;
+}
+article{
+    height:170px;
+    overflow-y: auto;
+}
+#list{
+    width: 590px;
+    height: 500px;
+    display: inline-block;
+}
+.division{
+    width: 400px;
+    
+}
+
+#primeraD{
+   width: 326px;
+   
+    
+    color: #000000;
+    background-image: url('retina_wood.png');
+    
+    border-radius: 5px;
+    display: inline-block;
+}
+#segundaD{
+   width: 326px;
+    
+ 
+    color: #000000;
+    background-image: url('retina_wood.png');
+   vertical-align: top;
+    border-radius: 5px;
+    display: inline-block;
+}
+#terceraD{
+   width: 326px;
+    vertical-align: top;
+    
+    color: #000000;
+    background-image: url('retina_wood.png');
+    
+    border-radius: 5px;
+    display: inline-block;
+}
+#footer{
+    width: 990px;
+    height: 180px;
+}
+

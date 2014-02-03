@@ -19,7 +19,8 @@ function agregar(cont,id_inscripcion,competencia,ronda){
     var r = send_form("../controladores/ctrBarriles.php", "opc=AT&tiempo=" + document.getElementById("tiempof"+cont).value + 
                                                           "&id_inscripcion=" +id_inscripcion+
                                                           "&competencia=" +competencia+
-                                                          "&ronda=" +ronda);
+                                                          "&ronda=" +ronda+
+                                                          "&salida="+cont);
                                         
 if (r!='NULL') {document.getElementById("rank").innerHTML = r;
     document.getElementById("agregarf"+cont).style.visibility='hidden';

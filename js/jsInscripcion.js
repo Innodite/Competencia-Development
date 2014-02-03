@@ -15,8 +15,8 @@ function cargar(){
                                                                  "&nombre=" + document.getElementById("competidor").value +
                                                                  "&edad=" + document.getElementById("edad").value +
                                                                  "&swper=" + document.getElementById("swper").value);
-    rs = JSON.parse(r);
-    if (rs['R']){
+//    rs = JSON.parse(r);rs['R']
+    if (r){
         clear();
         loadStore();
     }
@@ -29,7 +29,7 @@ function modificar(fila,id,costo){
         strSelectTC = strSelectTC + "<option value="+document.getElementById("competencia").options[i].value+">"+document.getElementById("competencia").options[i].text+"</option>";
     }
     document.getElementById("lstable").rows[fila].cells[3].innerHTML = "<select id=tcomp"+fila+" name=tcomp"+fila+">" + strSelectTC + "</select>";
-    document.getElementById("lstable").rows[fila].cells[4].innerHTML = "<input id=tcosto"+fila+" name=tcosto"+fila+" value='"+costo+"'/>";
+   
     
 }
 
@@ -63,7 +63,7 @@ function clear(){
     document.getElementById("competidor").value = "";
     document.getElementById("edad").value = "";
     document.getElementById("competencia").value = 0;
-    document.getElementById("costo").value = "";
+   
     document.getElementById("swper").value = 0;
     document.getElementById("competidor").readOnly= false;
     document.getElementById("edad").readOnly=false;

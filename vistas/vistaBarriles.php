@@ -29,19 +29,12 @@
                     </div>
                 </td>
             </tr>
-        
-        
-        
         </table>
                 <div id="list"></div>
                 <aside id="rankings">
                     <article><div id="rank"></div></article>
                     <article id="general"><div id="rankG"></div></article>
-                </aside>
-                   
-                        
-                        
-                        
+                </aside>           
         </section>
         </div>
     </body>

@@ -12,7 +12,8 @@
      $tiempo = isset($_POST['tiempo']) ? $_POST['tiempo'] : null;
      $ronda = isset($_POST['ronda']) ? $_POST['ronda'] : null;
      $total = isset($_POST['total']) ? $_POST['total'] : null;
-   $p = array("fecha"=>$fecha,"competencia"=>$competencia,"id_inscripcion"=>$id_inscripcion, "tiempo"=>$tiempo,"ronda"=>$ronda,"total"=>$total);
+     $salida = isset($_POST['salida']) ? $_POST['salida'] : null;
+   $p = array("fecha"=>$fecha,"competencia"=>$competencia,"id_inscripcion"=>$id_inscripcion, "tiempo"=>$tiempo,"ronda"=>$ronda,"total"=>$total,"salida"=>$salida);
    $ob = new clsBarriles($p);
      
     switch ($_POST['opc']) {

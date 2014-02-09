@@ -118,13 +118,15 @@ class clsCompetencias extends clsConexion{
                 }//Fin Funcion Iniciar_Competencia
                 
     public function agregarTiempo(){
-  
-        $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta, tiempo) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo)") ? true : false;
+
+        $a= $this->filtro("select  agregar_tiempobp($this->id_inscripcion,$this->salida,$this->ronda,$this->tiempo)") ? true : false;
             if ($a!= 1){
                 return 0;
-            }else{
+                }else{
                 $i = 1;
-                $str = "<table id='ranking'> 
+                $str = "
+                        <table id='ranking'> 
+                        
                             <tr>
                                 <td>Posicion</td>
                                 <td>Competidor</td>

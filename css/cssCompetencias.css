@@ -5,18 +5,31 @@
     vertical-align: top;
 }
 article{
-    height:170px;
+    max-height:500px;
     overflow-y: auto;
+   
+}
+#ranking{
+    width: 400px;
+    max-height: 500px;
+    color: #000000;
+    background-image: url('retina_wood.png');
+    border-radius: 5px;
+    margin-top: 5px;
+    overflow-y: auto;
+}
+h1{
+    color: #000000;
+}
+select{
+    width: 120px;
 }
 #list{
     width: 590px;
     height: 500px;
     display: inline-block;
 }
-.division{
-    width: 400px;
-    
-}
+
 
 #primeraD{
    width: 326px;
@@ -52,4 +65,13 @@ article{
     width: 990px;
     height: 180px;
 }
-
+#competidores{
+    width: 590px;
+    color: #000000;
+    border-radius: 5px;
+    margin-top: 5px;
+    background-image: url('retina_wood.png');
+   height: 500px;
+    display: inline-block;
+    
+}

@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>Modulo de Competencias</title>
-        <link rel="stylesheet" href="../css/cssBarriles.css" type="text/css">
         <link rel="stylesheet" href="../css/cssCompetencias.css" type="text/css">
         <link rel="stylesheet" href="../css/cssGeneral.css" type="text/css">
         <script type="text/javascript" src="../js/utils.js"></script>
@@ -45,9 +44,7 @@
                 <div id="list"></div>
                 <aside id="rankings">
                   <article><div id="rank"></div></article>
-                  <article class="division"></article>
-                 <article class="division"></article>
-                    <article class="division"></article>
+                  
                 </aside>
                 <section id="footer">
                     <div id="primeraD"></div>

@@ -23,6 +23,7 @@ select{
 
 #ranking{
     width: 400px;
+    height: 500px;
     color: #000000;
     background-image: url('retina_wood.png');
     border-radius: 5px;
@@ -31,12 +32,13 @@ select{
 }
 #rankings{
     width: 400px;
+    height: 500px;
     display: inline-block;
     vertical-align: top;
 }
 article{
-    height: 250px;
-    overflow-y: auto;
+    height: 500px;
+    
 }
 #general{
     margin-top: 10px;

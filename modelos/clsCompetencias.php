@@ -246,10 +246,10 @@ class clsCompetencias extends clsConexion{
        return ($rt > 0) ? $str :0;
      }
      public function agregarTE(){
-         if($this->becerros==0){
+         if($this->becerros==0 || $this->tiempo==0){
             
-             $sql="select falla FROM ranking as rank,inscripcion as insc where insc.id_competencia='$this->id_competencia' AND insc.id_inscripcion='$this->id_inscripcion'";
-             $r = $this->filtro($sql);
+             $sql1="select falla FROM ranking as rank,inscripcion as insc where insc.id_competencia='$this->id_competencia' AND insc.id_inscripcion='$this->id_inscripcion'";
+             $r = $this->filtro($sql1);
              $row = $this->proximo($r);
              $falla = $row[0] + 1;
              
@@ -283,8 +283,17 @@ class clsCompetencias extends clsConexion{
          return ($rt >0) ? $str :0;}
          }
          else{
-         $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta, tiempo,becerro) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo,$this->becerros)") ? true : false;
-            if ($a!= 1){
+             $sql1="select falla FROM ranking as rank,inscripcion as insc where insc.id_competencia='$this->id_competencia' AND insc.id_inscripcion='$this->id_inscripcion'";
+             $re = $this->filtro($sql1);
+             $row = $this->proximo($re);
+             $falla2 = $row[0];
+             
+             $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta, tiempo,becerro) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo,$this->becerros)") ? true : false;
+          
+             $sql = "UPDATE ranking SET  falla=$falla2  WHERE id_inscripcion='$this->id_inscripcion'";
+             $this->filtro($sql);
+             
+         if ($a!= 1){
                 return 0;
             }else{
                 $i = 1;

@@ -34,7 +34,7 @@ nav{
 }
 nav ul li ul{
     display: none;
-    background-image: url('retina_wood.png'); /* asfalt.png */
+    background-image: url('retina_wood.png');
     width: auto !important;
     padding: 10px 0;
     position: absolute;

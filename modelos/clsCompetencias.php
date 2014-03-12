@@ -248,7 +248,7 @@ class clsCompetencias extends clsConexion{
      public function agregarTE(){
          if($this->becerros==0 || $this->tiempo==0){
             
-             $sql1="select falla FROM ranking as rank,inscripcion as insc where insc.id_competencia='$this->id_competencia' AND insc.id_inscripcion='$this->id_inscripcion'";
+             $sql1="select falla FROM ranking as rank,inscripcion as insc where insc.id_competencia='$this->id_competencia' AND insc.id_inscripcion='$this->id_inscripcion' AND rank.id_inscripcion=insc.id_inscripcion";
              $r = $this->filtro($sql1);
              $row = $this->proximo($r);
              $falla = $row[0] + 1;
@@ -283,7 +283,7 @@ class clsCompetencias extends clsConexion{
          return ($rt >0) ? $str :0;}
          }
          else{
-             $sql1="select falla FROM ranking as rank,inscripcion as insc where insc.id_competencia='$this->id_competencia' AND insc.id_inscripcion='$this->id_inscripcion'";
+             $sql1="select falla FROM ranking as rank,inscripcion as insc where insc.id_competencia='$this->id_competencia' AND insc.id_inscripcion='$this->id_inscripcion' AND rank.id_inscripcion=insc.id_inscripcion";
              $re = $this->filtro($sql1);
              $row = $this->proximo($re);
              $falla2 = $row[0];
@@ -356,6 +356,31 @@ class clsCompetencias extends clsConexion{
         $this->filtro($update);
         $this->cerrarConexion();
         return 1;                   }
+        
+    public function ranking(){
+        $i = 1;
+                $str = "
+                        <table id='ranking'> 
+                        
+                            <tr>
+                                <td>Posicion</td>
+                                <td>Competidor</td>
+                                <td>Tiempo</td>
+                            </tr>";
+                $r = $this->filtro("select * from ranking_barriles_poste WHERE id_competencia = '$this->id_competencia'");
+                $rt =  $this->getNumRows();
+                    while ($row = $this->proximo($r)) {
+                            $str .= "<tr>
+                                        <td>$i</td>
+                                        <td >$row[0]</td>
+                                        <td >$row[1]</td>
+                                        </tr>";
+                            $i++;                       }
+                            $str .= "</table>";
+        $this->cerrarConexion();
+        return ($rt >0) ? $str :0;
+        
+    }
                
             }//Fin de la Clase
 

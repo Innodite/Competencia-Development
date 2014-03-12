@@ -1,8 +1,3 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 function send_form(url, post_data){
  if(window.XMLHttpRequest){
   var ajaxResponse = new XMLHttpRequest();

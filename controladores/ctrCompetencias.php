@@ -32,8 +32,7 @@
                     case "FC": $out = $competencia->finCompetencia(); break;
                     default: break;
                                     }
-            echo $out;
-                                }
+            echo $out;          }
      if($modalidad=='grupo'){
          switch ($_POST['opc']) {
                 case "BC": $out = $competencia->cargarCompetencia();  break;
@@ -42,8 +41,7 @@
                 case "NR": $out = $competencia->nextRoundE(); break;
                 default: break;
                                 }
-        echo $out;
-        }
+                echo $out; }
     
            
    

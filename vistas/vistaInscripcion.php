@@ -29,7 +29,7 @@
                     <td><input id="edad" type="text" name="txtEdad" onkeyup="loadCompetencia()"   required></td>
                     <td><select id="competencia"></select></td>                     
                     
-                        <input type="hidden" name="swper" id="swper" value="0">
+                        <input type="hidden" name="swper" id="swper" value="0"/>
                     
                     <td>
                         <img id="imgadd"  title="Agregar" src="../img/add_med.png" onclick="cargar()">

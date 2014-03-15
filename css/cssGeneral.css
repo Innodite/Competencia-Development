@@ -38,7 +38,7 @@ nav ul li ul{
     width: auto !important;
     padding: 10px 0;
     position: absolute;
-    font-weight: bold;
+    /*font-weight: bold;*/
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -57,6 +57,10 @@ nav ul li ul li{
 
 nav ul li ul li a {
 	 color: #000000;
+}
+
+nav ul li ul li:hover {
+    font-weight: bold;
 }
 
 nav ul li:hover ul{
@@ -89,7 +93,7 @@ input:invalid{
     background-color: #FF5E99;
     
 }
-*::-moz-selection {
+*:-moz-selection {
     background: none repeat scroll 0 0 #FF5E99;
     color: #FFFFFF;
     text-shadow: none;

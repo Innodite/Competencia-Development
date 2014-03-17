@@ -1,13 +1,17 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+/*Desarrollado por Innodite 
+   RIF:  J-40270256-6
+    Contacto
+       Javier Urbano     0416-583.38.09
+       Anthony Filgueira 0426-594.00.45
+*/
+
+
 function buscar(){
-   var r = send_form("../controladores/ctrInscripcion.php", "opc=BS&txtCedula=" + document.getElementById("cedula").value +
+  var r = send_form("../controladores/ctrInscripcion.php", "opc=BS&txtCedula=" + document.getElementById("cedula").value +
                                                                  "&txtCompetencia=" + document.getElementById("competencia").value +
                                                                  "&nombre=" + document.getElementById("competidor").value +
-                                                                 "&edad=" + document.getElementById("edad").value);
-    if (r) document.getElementById("list").innerHTML = r;
+                                                                "&edad=" + document.getElementById("edad").value);
+   if (r) document.getElementById("list").innerHTML = r;
 }
 function cargar(){
     var r = send_form("../controladores/ctrInscripcion.php", "opc=IN&txtCedula=" + document.getElementById("cedula").value +
@@ -29,7 +33,7 @@ function modificar(fila,id,costo){
         strSelectTC = strSelectTC + "<option value="+document.getElementById("competencia").options[i].value+">"+document.getElementById("competencia").options[i].text+"</option>";
     }
     document.getElementById("lstable").rows[fila].cells[3].innerHTML = "<select id=tcomp"+fila+" name=tcomp"+fila+">" + strSelectTC + "</select>";
-   
+  
     
 }
 
@@ -56,7 +60,7 @@ function verificarCi(){
         document.getElementById("edad").readOnly=false;
         document.getElementById("swper").value = 1;
     } 
-    
+   
 }
 function clear(){
     document.getElementById("cedula").value = "";
@@ -64,8 +68,8 @@ function clear(){
     document.getElementById("edad").value = "";
     document.getElementById("competencia").value = 0;
    
-    document.getElementById("swper").value = 0;
-    document.getElementById("competidor").readOnly= false;
+   document.getElementById("swper").value = 0;
+   document.getElementById("competidor").readOnly= false;
     document.getElementById("edad").readOnly=false;
 }
 function loadCompetencia(){
@@ -78,7 +82,8 @@ function loadStore(){
 }
 window.onload = function(){    
    loadCompetencia();
-   
+  
 }
+
 
 

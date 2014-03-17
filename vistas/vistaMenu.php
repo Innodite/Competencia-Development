@@ -6,8 +6,8 @@
                 <li><a href="vistaCategoria.php">Categoria</a></li>
                 <li><a href="vistaModoCompetencia.php">Tipo</a></li> 
                 <li><a href="vistaInscripcion.php">Inscripciones</a></li>
-<!--                <li><a href="vistaGCompetencia.php">Competencias</a></li>-->
-                <li><a href="vistaBarriles.php">Competencias</a></li>
+                <li><a href="vistaCompetencias.php">Competencias</a></li>
+             
                
             </ul>     
 </nav>

@@ -1,37 +1,32 @@
 <?php
-
+/*Desarrollado por Innodite 
+    RIF:  J-40270256-6
+    Contacto
+        Javier Urbano     0416-583.38.09
+        Anthony Filgueira 0426-594.00.45
+*/
 include("clsConexion.php");
 include ("clsUtils.php");
-/*
-Desarrollado Por Innodite 
-RIF J-
-Contacto:
-Anthony Filgueira
-0426-5940045
-Javier Urbano
-0416-5833809
-*/
-class clsInscripcion extends clsConexion{
-	private $id_inscripcion;
-	private $cedula;
-	private $competencia;
-        private $nombre;
-        private $edad;
-        private $sw;
-        private $utilidades;
 
-	public function __construct($p=NULL){
+class clsInscripcion extends clsConexion{
+	
+	private $cedula;
+        private $nombre;
+	private $edad;
+        private $competencia;
+        private $comp;
+	public function __construct($competidor=NULL){
             parent::__construct();
-            $this->utilidades = new clsUtils();
-            if (!is_null($p)){
-		$this->id_inscripcion = $p['id'];
-		$this->cedula = $p['txtCedula'];
-		$this->competencia = $p['txtCompetencia'];
-                $this->nombre = $p['nombre'];
-                $this->edad = $p['edad'];
-                $this->sw = $p['swper'];
-            }
-	}
+            
+            if (!is_null($competidor)){
+		
+		$this->cedula       = $competidor['cedula'];
+                $this->nombre       = $competidor['nombre'];
+                $this->edad         = $competidor['edad'];
+                $this->competencia  = $competidor['competencia'];
+                $this->comp         = $competidor['comp'];
+		
+                                        }               }
 
 	public function __destruct(){}
 
@@ -55,20 +50,29 @@ class clsInscripcion extends clsConexion{
 		return $encontro;
 	}//Close Function Buscar
         
-        public function chkCi($p=NULL){
-            $out = "";
-            $where = is_null($p) ? " where cedula = '$this->cedula'" : " where cedula = '$p[txtCedula]'";
-            $sql = "select cedula, nombre,edad from competidor $where";
+        public function buscarCompetidor(){
+            
+            $sql = "SELECT cedula, nombre,edad FROM competidor WHERE cedula = $this->cedula";
             $r = $this->filtro($sql);
+            
             if ($this->getNumRows() > 0){
+                
                 $fila = $this->proximo($r);
-                $out = array("CI"=>$fila[0],"NOMBRE"=>$fila[1],"EDAD"=>$fila[2]);
-            }else
-                return 0;
-            return json_encode($out);  
+                $out = array('ci'=>$fila[0],'nombre'=>$fila[1],'edad'=>$fila[2]);
+                                        }
+            else{ return 0;}
+            
+            return $out;  
         }
-        
-	public function insertar($p=NULL){
+        public function inscribirCompetidor(){
+            $sql = "SELECT inscribir_competidor($this->cedula,'$this->nombre',$this->edad,$this->competencia,'$this->comp')";
+            if($this->filtro($sql))
+            {return 1;}
+            else{
+            return 0;}
+        }
+
+                public function insertar($p=NULL){
          $this->filtro("INSERT INTO competidor(cedula,nombre,edad) values ('$this->cedula','$this->nombre','$this->edad')");
               
          $out=  $this->filtro("INSERT INTO inscripcion(cedula,id_competencia) VALUES ('$this->cedula','$this->competencia')");
@@ -107,7 +111,26 @@ class clsInscripcion extends clsConexion{
         }
         return $str;
     }
-    
+    public function listarCompetenciaInd(){
+        $sql = "select comp.id_competencia,(comp.fecha || '/' || mc.nombre || '/' || cat.nombre) AS nombre
+                FROM competencia AS comp,categoria AS cat,modo_competencia AS mc 
+                WHERE comp.id_modo_competencia = mc.id_modo_competencia 
+                AND comp.id_categoria = cat.id_categoria AND comp.sts = 'VAL' AND mc.modalidad = 'individual'
+                AND $this->edad BETWEEN cat.edad_min AND cat.edad_max";
+        $datos = $this->filtro($sql);
+        if ($this->getNumRows() > 0){
+       $out = array();
+        while($columna = $this->proximo($datos)){
+                     $out[] = array('id_competencia'=>$columna[0],'nombre'=>$columna[1]); 
+                      
+                }
+               return $out;
+        }else{
+            return 0;
+        }
+    }
+
+
     public function listarTabla($p=NULL){
         $where = is_null($p) ? "" : " where id_competencia=cod_comp";
         $i = 1;

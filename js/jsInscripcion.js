@@ -48,13 +48,13 @@ function verificarCi(){
     var r = send_form("../controladores/ctrInscripcion.php", "opc=CHK&txtCedula=" + document.getElementById("cedula").value);
     if (r!=0){
         var t = JSON.parse(r);
-        document.getElementById("competidor").value = t['NOMBRE'];
-        document.getElementById("edad").value = t['EDAD'];
+        document.getElementById("competidor").value = t['nombre'];
+        document.getElementById("edad").value = t['edad'];
         
         document.getElementById("competidor").setAttribute("readonly", "");
         document.getElementById("edad").setAttribute("readonly", "");
         document.getElementById("swper").value = 0;
-        loadCompetencia();        
+              
     }else{
         document.getElementById("competidor").readOnly= false;
         document.getElementById("edad").readOnly=false;

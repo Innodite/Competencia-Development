@@ -13,13 +13,13 @@ function verificarCi(fila){
     var r = send_form("../controladores/ctrInscripcion.php", "opc=CHK&txtCedula=" + document.getElementById("cedula_"+fila).value);
     if (r!=0){
         var t = JSON.parse(r);
-        document.getElementById("competidor_"+fila).value = t['NOMBRE'];
-        document.getElementById("edad_"+fila).value = t['EDAD'];
+        document.getElementById("competidor_"+fila).value = t['nombre'];
+        document.getElementById("edad_"+fila).value = t['edad'];
         
         document.getElementById("competidor_"+fila).setAttribute("readonly", "");
         document.getElementById("edad_"+fila).setAttribute("readonly", "");
         document.getElementById("swper").value = 0;
-        loadCompetencia();        
+            
     }else{
         document.getElementById("competidor_"+fila).readOnly= false;
         document.getElementById("edad_"+fila).readOnly=false;

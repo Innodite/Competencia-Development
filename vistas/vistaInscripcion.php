@@ -18,7 +18,7 @@
 <!--        <script type="text/javascript" src="../js/jsInscripcion.js"></script>-->
        
     </head>
-    <body>
+    <body onload="init()">
        <div align="center">
         <section id="contenedor">
             <?php include 'vistaMenu.php'; ?>

@@ -16,12 +16,12 @@ if (isset($_POST['opc'])){
     $edad       = isset($_POST['edad']) ? $_POST['edad'] : null;
     $swper       = isset($_POST['swper']) ? $_POST['swper'] : null;
     
-    $p = array("id"=>$id_inscripcion,"txtCedula"=>$clCedula,"txtCompetencia"=>$clCompetencia,"nombre"=>$nombre,"edad"=>$edad,"swper"=>$swper);
+    $p = array("id"=>$id_inscripcion,"cedula"=>$clCedula,"txtCompetencia"=>$clCompetencia,"nombre"=>$nombre,"edad"=>$edad,"swper"=>$swper);
     $ob = new clsInscripcion($p);
     
     switch ($_POST['opc']) {
         case "BS": $out = $ob->listarTabla($p); break;
-        case "CHK": $out = $ob->chkCi(); break;
+        case "CHK": $out = $ob->buscarCompetidor(); break;
         case "IN": $out = $ob->insertar($p); break;
         case "LST":  $out = $ob->getCompetencias($p); break;
         case "LS": $out = $ob->listarTabla();   break;
@@ -30,7 +30,7 @@ if (isset($_POST['opc'])){
     }
     
     
-    echo $out;
+    echo json_encode($out);
 }else
     header("Location: ../index.php");
 

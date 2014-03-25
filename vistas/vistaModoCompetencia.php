@@ -20,7 +20,7 @@
         <?php include 'vistaMenu.php'; ?>
         
         <section id="modCompetencia">
-            <h1>Modo De Competencia</h1>
+            
             <form>
                 <table>
                     <tr>

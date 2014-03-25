@@ -13,11 +13,14 @@
         <section id="contenedor">
         <?php include 'vistaMenu.php'; ?>
         <section id="categoria">
-            <h1>Categoria</h1>
+            
             <form> 
                 <table>
                     <tr>
+                                    
+
                         <td style="text-align:left; padding-top:8px;">
+                            
                             <label>Nombre de Equipo</label>&nbsp;&nbsp;
                             <input style="text-transform: uppercase" type="text" name="nomb_equipo" id="nomb_equipo" onkeyup="buscarEquipo()" />&nbsp;&nbsp;&nbsp;&nbsp;
                             <img id="imgbus"  title="Buscar Equipo" src="../img/lupa_med.png" onclick="buscarEquipo()"/>

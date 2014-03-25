@@ -19,7 +19,7 @@
             <section id="contenedor">
                 <?php include 'vistaMenu.php'; ?>
                 <section id="categoria">
-                    <h1>Categoria</h1>
+                    
                         <form> <!-- ../controladores/ctrCategoria.php -->
                             <table>
                                 <tr>

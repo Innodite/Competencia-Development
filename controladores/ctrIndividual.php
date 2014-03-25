@@ -2,21 +2,31 @@
 if (isset($_POST['opc'])){
     
    include("../modelos/clsInscripcion.php");
-    $cedula = $_POST['cedula']? $_POST['cedula'] : null;
-    $nombre = $_POST['nombre']? $_POST['nombre'] : null;
-    $edad = $_POST['edad']? $_POST['edad'] : null;
-    $competencia = $_POST['competencia']? $_POST['competencia'] : null;
-    $comp       = isset($_POST['comp']) ? $_POST['comp'] : null;
+   $id_inscripcion = $_POST['id'] !=""   ? $_POST['id']         : 0;
+   $cedula         = $_POST['cedula'] !=""   ? $_POST['cedula']         : 0;
+   $nombre         = $_POST['nombre']     ? $_POST['nombre']            : null;
+   $edad           = $_POST['edad']   !=""      ? $_POST['edad']        : 0;
+   $competencia    = $_POST['competencia']!=""  ? $_POST['competencia'] : 0;
+   $comp           = $_POST['comp']      !=""   ? $_POST['comp']        : 0;
 
-    $competidor = array('cedula'=>$cedula,'nombre'=>$nombre,'edad'=>$edad,'competencia'=>$competencia,'comp'=>$comp);
-    $ic = new clsInscripcion($competidor);
+   $competidor = array(
+        'id_inscripcion'=>$id_inscripcion,
+        'cedula'        =>$cedula,
+        'nombre'        =>$nombre,
+        'edad'          =>$edad,
+        'competencia'   =>$competencia,
+        'comp'          =>$comp   );
+    
+   $ic = new clsInscripcion($competidor);
    
    
    switch ($_POST['opc']) {
       
-       case "CHK"   :   $out= $ic->buscarCompetidor();      break;
-       case "LSTCI"  :  $out= $ic->listarCompetenciaInd();     break;
-       case "IC"    :   $out= $ic->inscribirCompetidor();   break;
+       case "CHK"    :   $out= $ic->buscarCompetidor();         break;
+       case "LSTCI"  :   $out= $ic->listarCompetenciaInd();     break;
+       case "IC"     :   $out= $ic->inscribirCompetidor();      break;
+       case "LSTII"  :   $out= $ic->listarInscripcionesInd();   break;
+       case "DEL"    :   $out= $ic->eliminarInscripcion();      break;
        default: break;
     }
     

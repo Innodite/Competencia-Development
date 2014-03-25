@@ -9,28 +9,52 @@ include("clsConexion.php");
 include ("clsUtils.php");
 
 class clsInscripcion extends clsConexion{
-	
+	private $id_inscripcion;
 	private $cedula;
         private $nombre;
 	private $edad;
         private $competencia;
         private $comp;
-	public function __construct($competidor=NULL){
+	
+        public function __construct($competidor=NULL){
             parent::__construct();
             
             if (!is_null($competidor)){
-		
-		$this->cedula       = $competidor['cedula'];
-                $this->nombre       = $competidor['nombre'];
-                $this->edad         = $competidor['edad'];
-                $this->competencia  = $competidor['competencia'];
-                $this->comp         = $competidor['comp'];
+		$this->id_inscripcion   = $competidor['id_inscripcion'];
+		$this->cedula           = $competidor['cedula'];
+                $this->nombre           = strtolower($competidor['nombre']);
+                $this->edad             = $competidor['edad'];
+                $this->competencia      = $competidor['competencia'];
+                $this->comp             = $competidor['comp'];
 		
                                         }               }
 
 	public function __destruct(){}
 
-	public function buscar(){
+public function listarInscripcionesInd(){
+$sql = "SELECT id_inscripcion,cedula,nombre,edad,id_competencia,competencia FROM listarInscripcionesInd WHERE cedula=$this->cedula OR nombre='$this->nombre' OR edad=$this->edad OR id_competencia=$this->competencia";
+$datos = $this->filtro($sql);
+if ($this->getNumRows() > 0){
+       $out = array();
+        while($columna = $this->proximo($datos)){
+                     $out[] = array(
+                         'id_inscripcion'=>$columna[0],
+                         'cedula'=>$columna[1],
+                         'nombre'=>$columna[2],
+                         'edad'=>$columna[3],
+                         'id_competencia'=>$columna[4],
+                         'competencia'=>$columna[5]); 
+                      
+                }
+                $this->cerrarFiltro($datos);
+		$this->cerrarConexion();
+               return $out;
+        }else{
+            return 0;
+        }
+}
+
+public function buscar(){
 		$encontro = false;		
 
 		$sql = "SELECT * FROM inscripcion WHERE cedula = '$this->cedula'";
@@ -65,7 +89,7 @@ class clsInscripcion extends clsConexion{
             return $out;  
         }
         public function inscribirCompetidor(){
-            $sql = "SELECT inscribir_competidor($this->cedula,'$this->nombre',$this->edad,$this->competencia,'$this->comp')";
+            $sql = "SELECT inscribir_competidor($this->cedula,lower('$this->nombre'),$this->edad,$this->competencia,'$this->comp')";
             if($this->filtro($sql))
             {return 1;}
             else{
@@ -87,10 +111,15 @@ class clsInscripcion extends clsConexion{
         return $out;
     }
 
-	public function eliminar($p){		
-		$out = $this->filtro("delete from inscripcion where id_inscripcion = '$p[id]'") ? true : false;
-		$this->cerrarConexion();
-                return $out;
+	public function eliminarInscripcion(){		
+                if($this->filtro("delete from inscripcion where id_inscripcion = '$this->id_inscripcion'")){
+                    $this->cerrarConexion();
+                    return 1;
+                }
+                else{
+                    return 0;
+                }
+                
 	}
 
        public function getCategorias(){           
@@ -124,6 +153,8 @@ class clsInscripcion extends clsConexion{
                      $out[] = array('id_competencia'=>$columna[0],'nombre'=>$columna[1]); 
                       
                 }
+                $this->cerrarFiltro($datos);
+		$this->cerrarConexion();
                return $out;
         }else{
             return 0;

@@ -18,35 +18,28 @@
 <!--        <script type="text/javascript" src="../js/jsInscripcion.js"></script>-->
        
     </head>
-    <body onload="init()">
+    <body>
        <div align="center">
         <section id="contenedor">
             <?php include 'vistaMenu.php'; ?>
         <section id="inscripcion">
                 <h1>Inscripciones</h1>
         <form> <!-- action="../controladores/ctrInscripcion.php" method="POST" -->
-            <div id="mi">
+            <div id="mi"><!--Modalidad Individual-->
             <table>
-                
-                 
                 <tr>
                     <td>
-                       I  <input id="i" type="radio" name="asdf" value="i" checked>
-                       G  <input id="g" type="radio" name="asdf" value="g">
-                    </td>
-                
-                    
+                       I<input id="i" type="radio" name="asdf" value="i" checked>
+                       G<input id="g" type="radio" name="asdf" value="g">
+                    </td>   
                 </tr>
-                
-                    <tr>
+                <tr>
                     <td>Cedula</td>
                     <td>Competidor</td>
                     <td>Edad</td>
-                    <td>Competencia</td>
-                    
+                    <td>Competencia</td> 
                 </tr>
                 <tr>
-                
                     <td><input  class="input" id="cedula"      type="text"                                required></td>
                     <td><input  class="input" id="nombre"      type="text"                                required></td>
                     <td><input  class="input" id="edad"        type="text"                                required></td>
@@ -56,19 +49,29 @@
                         <img id="imgadd"  title="Agregar" src="../img/add_med.png" >
                         <img id="imgbus"  title="Buscar"  src="../img/lupa_med.png">
                     </td>
-                </tr>
-               
-                
+                </tr>   
             </table>
-                </div>
-            <div id="mg" hidden>
+            </div>
+            <div id="mg" hidden><!-- Modalidad Grupal-->
             <table>
-                <tr><td> 
-                         <input id="i2" type="radio" name="asdf2" value="i2">
-                         <input id="g2" type="radio" name="asdf2" value="g2">
-                    </td></tr>
-               
-                
+                <tr>
+                    <td> 
+                        I<input id="i2" type="radio" name="asdf2" value="i2">
+                        G<input id="g2" type="radio" name="asdf2" value="g2">
+                    </td>
+                </tr>
+               <tr>
+                    <td>Equipo</td>
+                    <td>Competencia</td> 
+               </tr>
+               <tr>
+                   <td><select class="input" id="equipos"></select></td>
+                   <td><select class="input" id="competenciaE"></select> </td>
+                   <td>
+                        <img id="imgaddE"  title="Agregar" src="../img/add_med.png" >
+                        <img id="imgbusE"  title="Buscar"  src="../img/lupa_med.png">
+                   </td>
+               </tr>
             </table>
                 </div>
             
@@ -77,7 +80,7 @@
                 </section>
             
                
-                 <div id="list"></div>
+            <div id="list"><table></table></div>
                 </section>
             </div>
     </body>

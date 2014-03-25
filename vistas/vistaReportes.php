@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['perfil']))
+        header("Location: ../index.php");
+?>
 <!--Desarrollado por Innodite 
     RIF:  J-40270256-6
     Contacto
@@ -17,8 +22,8 @@
     <body>
         <div align="center">
             <section id="contenedor">
-        <table>
             <h1>Reportes</h1>
+        <table>
             <tr>
                 <td><label>Fecha de Competencia</label></td>
                 <td><label>Competencia</label></td>

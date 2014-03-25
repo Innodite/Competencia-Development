@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['perfil']))
+        header("Location: ../index.php");
+?>
 <!--Desarrollado por Innodite 
     RIF:  J-40270256-6
     Contacto

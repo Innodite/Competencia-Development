@@ -1,30 +1,35 @@
 <?php
  session_start();
  
-       if($_POST['username'] && $_POST['password'])
-           {
+if(isset($_POST['username']) && isset($_POST['password'])){
 
-//aqui debe ir validacion de base de datos
+    include './modelos/clsUsers.php';
+    $usr = new clsUsers();
+    if($usr->getLogin($_POST['username'], $_POST['username'])){
+        $usr->getDataUser($_POST['username']);
+        //Creamos la sesión 
+         $_SESSION['username'] = $_POST['username'];
+         $_SESSION['password'] = $_POST['password'];
+         $_SESSION['nombre']   = $usr->getName();
+         $_SESSION['apellido'] = $usr->getLastName();
+         $_SESSION['id']       = $usr->getIdUsr();
+         $_SESSION['perfil']   = $usr->getPerfil();
 
-//si el login esta bueno agarrar sesion
+         header('Location: ./vistas/vistaPrincipal.php');
 
-if($_POST['username']== 'anthony' && $_POST['password']== '1234'){
-
-     
-    //Creamos la sesión 
-     $_SESSION['username'] = $_POST['username'];
-     $_SESSION['password'] = $_POST['password'];
-     
-     header('Location: ../competencia-development/vistas/vistaCompetencia.php');
-     
-}
-else{
-     header('Location: index.php');
-}
+    }else{
+         header('Location: index.php');
+    }
+}else{
+    if(isset($_SESSION['username'])){
+        session_destroy();
+        session_start();
+        session_destroy();
+        header('Location: index.php');
+    }
 }
  
- if(!isset($_SESSION['username']))
-    {
+ if(!isset($_SESSION['username'])){
        header('Location: index.php');
-    }
+ }
 ?>

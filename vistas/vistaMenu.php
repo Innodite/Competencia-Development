@@ -1,7 +1,6 @@
-
 <nav>
             <ul>
-                <li><a href="../index.php">Inicio</a></li>
+                <li><a href="vistaPrincipal.php">Inicio</a></li>
                 <li><a href="vistaCompetencia.php">Registro</a></li>
                 <li><a href="#">Administrativo</a>
                     <ul>
@@ -12,7 +11,6 @@
                 </li>
                 <li><a href="vistaInscripcion.php">Inscripciones</a></li>
                 <li><a href="vistaCompetencias.php">Competencias</a></li>
-             
-               
+                <li><a href="../sesion.php">Salir</a></li>
             </ul>     
 </nav>

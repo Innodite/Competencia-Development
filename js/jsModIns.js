@@ -2,6 +2,7 @@ $(document).on("ready", function() {
 
     //Funciones para Cambiar De Modalidad Individual a Grupal  
     $('input[name=asdf]:radio').on("change", function() {
+        clearList();
         if ($('input[name=asdf]:radio:checked').val() == 'g') {
             $('#mi').hide();
             $('input[id=g]:radio').prop("checked", false);
@@ -14,6 +15,7 @@ $(document).on("ready", function() {
         }
     });
     $('input[name=asdf2]:radio').on("change", function() {
+        clearList();
         if ($('input[name=asdf2]:radio:checked').val() == 'i2') {
             $('#mg').hide();
             $('input[id=i2]:radio').prop("checked", false);
@@ -81,15 +83,23 @@ $(document).on("ready", function() {
         var competencia = $('#competencia').val();
         var comp = $('#comp').attr('value');
         var opc = 'IC';
-        $.post('../controladores/ctrIndividual.php', {cedula: cedula, nombre: nombre, edad: edad, competencia: competencia, opc: opc, comp: comp}, function(respuesta) {
-            if (respuesta == 1) {
-                $('#cedula').val('');
-                $('#nombre').val('');
-                $('#edad').val('');
-                $('#competencia').empty();
-            }
-        });
+        
+        if (validateInsInd(cedula, nombre, edad, competencia)){
+            $.post('../controladores/ctrIndividual.php', {cedula: cedula, nombre: nombre, edad: edad, competencia: competencia, opc: opc, comp: comp}, function(respuesta) {
+                if (respuesta == 1) {
+                    $('#cedula').val('');
+                    $('#nombre').val('');
+                    $('#edad').val('');
+                    $('#competencia').empty();
+                }
+            });
+        }        
     });
+ function validateInsInd(ced,nomb,edad,comp){
+     if (ced.length == 0 || nomb.length == 0 || edad.length == 0 || comp.length == 0)
+         return false;
+     return true;
+ }   
 //Funcion Para Buscar Inscripcion de Competidor
     $('#imgbus').on('click', function() {
         var cedula = $('#cedula').val();
@@ -101,9 +111,29 @@ $(document).on("ready", function() {
         $.post('../controladores/ctrIndividual.php', {cedula: cedula, nombre: nombre, edad: edad, competencia: competencia, opc: opc}, function(respuesta) {
             
             inscripcion = JSON.parse(respuesta);
-            
+            clearList();
                 $.each(inscripcion, function(index, valor) {
-                    $('#list table').append("<tr><td>" + valor['cedula'] + "</td><td>" + valor['nombre'] + "</td><td>"+valor['edad']+"</td><td>"+valor['competencia']+"</td>"+"<td><img id='va"+index+"'  title='Buscar'  src='../img/del_med.png'></td>"+"</tr>");
+                   $('#list table').append("<tr><td>" + valor['cedula'] + "</td><td>" + valor['nombre'] + "</td><td>"+valor['edad']+"</td><td>"+valor['competencia']+"</td>"+"<td><img id='va"+index+"'  title='Buscar'  src='../img/del_med.png'></td>"+"</tr>");
+                   $('#va'+index).on('click', function() {
+                       var opc = 'DEL';
+                       var id = valor['id_inscripcion'];
+                      $.post('../controladores/ctrIndividual.php', {id: id, opc: opc}, function(respuesta) {
+                        if(respuesta == 1){
+                            var parent = $("#va"+index).parents().parents().get(0);
+                            $(parent).remove();
+                        }
+                      });
+                    });
+                });     
+        });
+
+    });
+    
+    $.fn.ListarCompetencia = function(inscripcion) {
+        $('#list').empty();
+            $('#list').html("<table></table>");
+                $.each(inscripcion, function(index, valor) {
+                   $('#list table').append("<tr><td>" + valor['cedula'] + "</td><td>" + valor['nombre'] + "</td><td>"+valor['edad']+"</td><td>"+valor['competencia']+"</td>"+"<td><img id='va"+index+"'  title='Buscar'  src='../img/del_med.png'></td>"+"</tr>");
                    $('#va'+index).on('click', function() {
                        var opc = 'DEL';
                        var id = valor['id_inscripcion'];
@@ -114,10 +144,11 @@ $(document).on("ready", function() {
                       });
                     });
                 });
-                
-        });
-
-    });
-
+    }
+    
+    function clearList(){
+        $('#list').empty();
+        $('#list').html("<table></table>");
+    }
 
 });

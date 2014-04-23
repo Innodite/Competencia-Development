@@ -7,8 +7,8 @@
 
 $dirbase  = "Competencia-Development";
 $servidor = "localhost";
-$usuario  = "postgres";
-$clave    = "abril.2013";
+$usuario  = "user";
+$clave    = "password";
 $puerto   = "5432";
 $bd       = "competencia";
 

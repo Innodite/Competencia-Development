@@ -20,8 +20,28 @@
         <script type="text/javascript" src="../js/jsCompetencias.js"></script>
     </head>
     <body>
-        <div align="center">
+        <header id="logo-menu">
+              <a href= "vistaPrincipal.php"><img id="logo" src="../img/asovaqueros.png"/></a>          
+        </header> 
+<!--::::::::::::::::::::::::INICIO CONTENEDOR:::::::::::::::::::::::::::::::::::-->                
             <section id="contenedor">
+<!--::::::::::::::::::::::::INICIO SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+<!--:::::::::::::::::::::::::::::: SESIÓN :::::::::::::::::::::::::::::::::::-->           
+            <nav id="usuario-sesion">
+                    <br></br>
+                    <div>
+                        <?php echo "".
+                                ucfirst(strtolower($_SESSION['nombre']))." ".
+                                ucfirst(strtolower($_SESSION['apellido']));
+                        ?>
+                    </div>
+ <!--::::::::::::::::::::::::::::::::MENÚ:::::::::::::::::::::::::::::::::::-->             
+                    <div id="posicion-menu"><?php include 'vistaMenu.php';?></div>
+                    <div> <a href="../sesion.php"><img id="logo-off" src="../img/off.png" title="Salir"></a></div>
+            </nav>
+<!--::::::::::::::::::::::::FIN SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+                <br></br>
+                <h1>MODALIDAD DE COMPETENCIAS</h1>
         <table>
             <tr>
                 <td>Fecha</td>
@@ -48,7 +68,7 @@
                     </div>
                 </td>
                 <td>
-                    <img src="../img/back1.png" id="volver" width="30" height="30" onclick="volver()" title="Volver">
+                    <img src="../img/back11.png" id="volver" width="30" height="30" onclick="volver()" title="Volver">
                 </td>
             </tr>
         </table>
@@ -63,7 +83,10 @@
                     <div id="terceraD"></div>
                 </section>
         </section>
-        </div>
+<!-- :::::::::::::::::::::: FIN CONTENEDOR::::::::::::::::::::::::::::-->                  
+        <footer>                
+            <p id="footer">Copyright © 2014 Western Intelligent System Venezuela</p>
+        </footer>         
     </body>
 </html>
 

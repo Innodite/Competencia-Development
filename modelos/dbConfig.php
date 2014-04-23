@@ -5,11 +5,11 @@
  * and open the template in the editor.
  */
 
-$dirbase  = "competencia";
-$servidor = "127.0.0.1";
+$dirbase  = "Competencia-Development";
+$servidor = "localhost";
 $usuario  = "postgres";
-$clave    = "1234";
+$clave    = "abril.2013";
 $puerto   = "5432";
-$bd       = "comp-devel";
+$bd       = "competencia";
 
 ?>

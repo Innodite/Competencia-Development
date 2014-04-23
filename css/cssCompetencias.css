@@ -18,9 +18,7 @@ article{
     margin-top: 5px;
     overflow-y: auto;
 }
-h1{
-    color: #000000;
-}
+
 select{
     width: 120px;
 }

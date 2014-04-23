@@ -37,9 +37,9 @@ class clsUsers extends clsConexion{
         $user = is_null($user) ? $this->user : $user;
         $pass = is_null($pass) ? $this->pass : $pass;
         
-        $r = $this->filtro("select tlogin('".$user."','".$pass."') usrlog");
+        $r = $this->filtro("select tlogin('".trim($user)."','".trim($pass)."') usrlog");
         $row = $this->proximo($r);
-        if ($row['usrlog'] == 1)
+        if ($row['usrlog'] == 0)
             return true;
         return false;
     }

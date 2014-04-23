@@ -14,11 +14,31 @@
         <script type="text/javascript" src="../js/jsCrearEquipo.js"></script>
     </head>
     <body>
-        <div align="center">
+               <header id="logo-menu">
+              <a href= "vistaPrincipal.php"><img id="logo" src="../img/asovaqueros.png"/></a>
+          
+        </header> 
+<!--::::::::::::::::::::::::INICIO CONTENEDOR:::::::::::::::::::::::::::::::::::-->                
         <section id="contenedor">
-        <?php include 'vistaMenu.php'; ?>
+
+<!--::::::::::::::::::::::::INICIO SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+<!--:::::::::::::::::::::::::::::: SESIÓN :::::::::::::::::::::::::::::::::::-->           
+            <nav id="usuario-sesion">
+                    <br></br>
+                    <div>
+                        <?php echo "".
+                                ucfirst(strtolower($_SESSION['nombre']))." ".
+                                ucfirst(strtolower($_SESSION['apellido']));
+                        ?>
+                    </div>
+ <!--::::::::::::::::::::::::::::::::MENÚ:::::::::::::::::::::::::::::::::::-->             
+                    <div id="posicion-menu"><?php include 'vistaMenu.php';?></div>
+                    <div> <a href="../sesion.php"><img id="logo-off" src="../img/off.png" title="Salir"></a></div>
+            </nav>
+<!--::::::::::::::::::::::::FIN SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+                 <br></br>
+                 <h1>CREAR EQUIPOS</h1>
         <section id="categoria">
-            
             <form> 
                 <table>
                     <tr>
@@ -62,7 +82,10 @@
         </section>
             <div id="list"></div>
         </section>
-        </div>
+<!-- :::::::::::::::::::::: FIN CONTENEDOR::::::::::::::::::::::::::::-->                  
+        <footer>                
+            <p id="footer">Copyright © 2014 Western Intelligent System Venezuela</p>
+        </footer> 
     </body>
 </html>
 

@@ -16,7 +16,9 @@
        
         <title>Inscripci&oacute;n</title>
         <link rel="stylesheet" href="../css/cssInscripcion.css" type="text/css">
+        <link rel="stylesheet" href="../css/cssGeneral.css" type="text/css"/>
  
+
         <script type="text/javascript" src="../js/utils.js"></script>
         <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="../js/jsModIns.js"></script>
@@ -24,13 +26,33 @@
        
     </head>
     <body>
-       <div align="center">
+         <header id="logo-menu">
+              <a href= "vistaPrincipal.php"><img id="logo" src="../img/asovaqueros.png"/></a>
+          
+        </header> 
+<!--::::::::::::::::::::::::INICIO CONTENEDOR:::::::::::::::::::::::::::::::::::-->                
         <section id="contenedor">
-            <?php include 'vistaMenu.php'; ?>
-        <section id="inscripcion">
-                <h1>Inscripciones</h1>
+
+<!--::::::::::::::::::::::::INICIO SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+<!--:::::::::::::::::::::::::::::: SESIÓN :::::::::::::::::::::::::::::::::::-->           
+            <nav id="usuario-sesion">
+                    <br></br>
+                    <div>
+                        <?php echo "".
+                                ucfirst(strtolower($_SESSION['nombre']))." ".
+                                ucfirst(strtolower($_SESSION['apellido']));
+                        ?>
+                    </div>
+ <!--::::::::::::::::::::::::::::::::MENÚ:::::::::::::::::::::::::::::::::::-->             
+                    <div id="posicion-menu"><?php include 'vistaMenu.php';?></div>
+                    <div> <a href="../sesion.php"><img id="logo-off" src="../img/off.png" title="Salir"></a></div>
+            </nav>
+<!--::::::::::::::::::::::::FIN SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+                 <br></br>
+                 <h1>INSCRIPCION DE COMPETIDORES</h1>
+                 <section>                
         <form> <!-- action="../controladores/ctrInscripcion.php" method="POST" -->
-            <div id="mi"><!--Modalidad Individual-->
+          <div id="mi"><!--Inicio Modalidad Individual-->
             <table>
                 <tr>
                     <td>
@@ -56,8 +78,8 @@
                     </td>
                 </tr>   
             </table>
-            </div>
-            <div id="mg" hidden><!-- Modalidad Grupal-->
+                            </div> <!-- Fin Modalidad Individual-->
+                            <div id="mg" hidden><!-- Inicio Modalidad Grupal-->
             <table>
                 <tr>
                     <td> 
@@ -78,15 +100,14 @@
                    </td>
                </tr>
             </table>
-                </div>
-            
+                            </div>   <!--Fin Modalidad Grupal-->                         
         </form>
-                 
                 </section>
-            
-               
             <div id="list"><table></table></div>
                 </section>
-            </div>
+<!-- :::::::::::::::::::::: FIN CONTENEDOR::::::::::::::::::::::::::::-->                  
+        <footer>                
+            <p id="footer">Copyright © 2014 Western Intelligent System Venezuela</p>
+        </footer>         
     </body>
 </html>

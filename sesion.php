@@ -5,7 +5,7 @@ if(isset($_POST['username']) && isset($_POST['password'])){
 
     include './modelos/clsUsers.php';
     $usr = new clsUsers();
-    if($usr->getLogin($_POST['username'], $_POST['username'])){
+    if($usr->getLogin($_POST['username'], $_POST['password'])){
         $usr->getDataUser($_POST['username']);
         //Creamos la sesión 
          $_SESSION['username'] = $_POST['username'];

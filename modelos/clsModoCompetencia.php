@@ -22,8 +22,8 @@ class clsModoCompetencia extends clsConexion {
         $i = 1;
         $str = "<table id='lstable'>";
         $str .="<tr>
-                <td>Modo de Competencia</td>
-                <td>Modalidad</td>
+                <td class='truco'>Modo de Competencia</td>
+                <td class='truco'>Modalidad</td>
                 </tr>";
         $r = $this->filtro("SELECT id_modo_competencia,nombre,modalidad FROM modo_competencia ORDER BY nombre");
         $rt =  $this->getNumRows();

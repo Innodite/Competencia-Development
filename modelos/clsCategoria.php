@@ -27,9 +27,9 @@ class clsCategoria extends clsConexion{
         $i = 1;
         $str = "<table id='lstable'>";
         $str .="<tr>
-                        <td><label>Nombre</label></td>
-                        <td><label>Edad M&iacute;nima</label></td>
-                        <td><label>Edad M&aacute;xima</label></td>
+                        <td class='truco'><label>Nombre</label></td>
+                        <td class='truco'><label>Edad M&iacute;nima</label></td>
+                        <td class='truco'><label>Edad M&aacute;xima</label></td>
                         
                     </tr>";
         $r = $this->filtro("select * FROM ver_categoria");

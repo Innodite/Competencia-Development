@@ -20,9 +20,30 @@
         <script type="text/javascript" src="../js/jsReportes.js"></script>
     </head>
     <body>
-        <div align="center">
+         <header id="logo-menu">
+              <a href= "vistaPrincipal.php"><img id="logo" src="../img/asovaqueros.png"/></a>
+          
+        </header> 
+<!--::::::::::::::::::::::::INICIO CONTENEDOR:::::::::::::::::::::::::::::::::::-->                
             <section id="contenedor">
-            <h1>Reportes</h1>
+
+<!--::::::::::::::::::::::::INICIO SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+<!--:::::::::::::::::::::::::::::: SESIÓN :::::::::::::::::::::::::::::::::::-->           
+            <nav id="usuario-sesion">
+                    <br></br>
+                    <div>
+                        <?php echo "".
+                                ucfirst(strtolower($_SESSION['nombre']))." ".
+                                ucfirst(strtolower($_SESSION['apellido']));
+                        ?>
+                    </div>
+ <!--::::::::::::::::::::::::::::::::MENÚ:::::::::::::::::::::::::::::::::::-->             
+                    <div id="posicion-menu"><?php include 'vistaMenu.php';?></div>
+                    <div> <a href="../sesion.php"><img id="logo-off" src="../img/off.png" title="Salir"></a></div>
+            </nav>
+<!--::::::::::::::::::::::::FIN SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+                 <br></br>
+                 <h1>INSCRIPCION DE COMPETIDORES</h1>
         <table>
             <tr>
                 <td><label>Fecha de Competencia</label></td>
@@ -40,20 +61,16 @@
                     </div>
                 </td>
             </tr>
-        
-        
-        
         </table>
                 <div id="list"></div>
                 <aside id="rankings">
                     <article><div id="rank"></div></article>
                     <article id="general"><div id="rankG"></div></article>
                 </aside>
-                   
-                        
-                        
-                        
         </section>
-        </div>
+<!-- :::::::::::::::::::::: FIN CONTENEDOR::::::::::::::::::::::::::::-->                  
+        <footer>                
+            <p id="footer">Copyright © 2014 Western Intelligent System Venezuela</p>
+        </footer>         
     </body>
 </html>

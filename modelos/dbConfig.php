@@ -6,10 +6,10 @@
  */
 
 $dirbase  = "Competencia-Development";
-$servidor = "localhost";
-$usuario  = "user";
-$clave    = "password";
+$servidor = "127.0.0.1";
+$usuario  = "postgres";
+$clave    = "1234";
 $puerto   = "5432";
-$bd       = "competencia";
+$bd       = "comp-devel";
 
 ?>

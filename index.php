@@ -2,7 +2,7 @@
 <html>
     <head>
          <meta charset="UTF-8">
-         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        
          <title>Control de Acceso</title>
         
         <!-- <link href="http://www.dafont.com/es/the-dead-saloon.font/css?family=thedeadsaloon-regular" type="text/css" rel="stylesheet" />-->
@@ -26,7 +26,7 @@
                     </fieldset>
                     <fieldset> 
                                    <label>Contraseña:</label><br><br>
-                                   <img  id="icono-sesion"src="img/pass.png" alt="pass"><input id="password" name="password" type="password" placeholder="Contraseña" required>
+                                   <img  id="icono-sesion" src="img/pass.png" alt="pass"><input id="password" name="password" type="password" placeholder="Contraseña" required>
                     </fieldset>
                              <input  id="acceder" type="submit" id="submit" value="Acceder">                            
         </form>

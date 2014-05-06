@@ -14,7 +14,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Modo De Competencia</title>
-        <link rel="stylesheet" href="../css/cssModoCompetencia.css" type="text/css">
+        
          <link rel="stylesheet" href="../css/cssGeneral.css" type="text/css"/>
         <script type="text/javascript" src="../js/utils.js"></script>
         <script type="text/javascript" src="../js/jsModoCompetencia.js"></script>

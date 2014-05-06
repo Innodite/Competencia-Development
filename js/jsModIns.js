@@ -113,7 +113,7 @@ $(document).on("ready", function() {
         var competencia = $('#competencia').val();
         var opc = 'LSTII';
 
-        $.post('../controladores/ctrIndividual.php', {cedula: cedula, nombre: nombre, edad: edad, competencia: competencia, opc: opc}, function(respuesta) {
+        $.post('../controladores/ctrIndividual.php', {cedula: cedula,nombre:nombre, competencia: competencia, opc: opc}, function(respuesta) {
             
             inscripcion = JSON.parse(respuesta);
             clearList();
@@ -158,6 +158,15 @@ $('#imgaddE').on('click',function(){
             
          }
      });});
+ $('#edad').on('keypress',function(event){
+     if (event.which == 8){
+         return true;
+     }
+     if(event.which < 48 || event.which > 57){
+         return false;
+     }
+     
+ });
 //Funcion para listar Inscripciones de Equipos
 $('#imgbusE').on('click',function(){
       var idEquipo = $('#equipos').val();

@@ -35,7 +35,7 @@ class clsInscripcion extends clsConexion{
 	public function __destruct(){}
 
 public function listarInscripcionesInd(){
-$sql = "SELECT id_inscripcion,cedula,nombre,edad,id_competencia,competencia FROM listarInscripcionesInd WHERE cedula=$this->cedula OR nombre='$this->nombre' OR edad=$this->edad OR id_competencia=$this->competencia";
+$sql = "SELECT id_inscripcion,cedula,nombre,edad,id_competencia,competencia FROM inscripciones_individuales WHERE cedula=$this->cedula OR id_competencia=$this->competencia OR nombre='$this->nombre'";
 $datos = $this->filtro($sql);
 if ($this->getNumRows() > 0){
        $out = array();

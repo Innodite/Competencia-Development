@@ -42,7 +42,7 @@
             echo $out;          }
      if($modalidad=='grupo'){
          switch ($_POST['opc']) {
-                case "BC": $out = $competencia->cargarCompetencia();  break;
+                case "BC": $out = $competencia->cargarCompetenciaE();  break;
                 case "IC": $out = $competencia->iniciarCompetencia(); break;
                 case "AT": $out = $competencia->agregarTE(); break;
                 case "NR": $out = $competencia->nextRoundE(); break;

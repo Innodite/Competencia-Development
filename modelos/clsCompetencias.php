@@ -44,8 +44,18 @@ class clsCompetencias extends clsConexion{
                 while($columna = $this->proximo($datos)){
                          $str .= "<option value =$columna[0]>$columna[1]</option>";                                    
                 }
-                return $str;
-                                            }
+                return $str;            }
+    public function cargarCompetenciaE(){
+                
+                $str = "<option value=''>Seleccione</option>";
+                $sql = "SELECT id_competencia,nombre from mostrar_competencia_equipos WHERE fecha = '$this->fecha' AND modalidad='$this->modalidad'";
+                
+                $datos = $this->filtro($sql);
+                
+                while($columna = $this->proximo($datos)){
+                         $str .= "<option value =$columna[0]>$columna[1]</option>";                                    
+                }
+                return $str;            }
                                   
     public function iniciarCompetencia(){
                 if($this->modalidad=="individual"){

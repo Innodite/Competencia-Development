@@ -10,25 +10,22 @@
          <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
          <title>Nosotros</title>
         <!-- <link href="http://www.dafont.com/es/the-dead-saloon.font/css?family=thedeadsaloon-regular" type="text/css" rel="stylesheet" />-->
-          <link rel="stylesheet" href="../css/slider.css" type="text/css" />
+        <!--<link rel="stylesheet" href="../css/slider.css" type="text/css" />-->
          <link rel="stylesheet" href="../css/cssGeneral.css" type="text/css"/>
       </head>
     <body>      
-        <header>
-             <a href= "vistaPrincipal.php"><img id="logo" src="../img/asovaqueros.png"/></a>
-        </header>            
-        <section id="contenedor"> 
-<!--::::::::::::::::::::::::INICIO MENÚ Y SESIÓN:::::::::::::::::::::::::::::::::::-->           
+<!--::::::::::::::::::::::::INICIO HEADER Y MENÚ ::::::::::::::::::::::::::::-->
+        <?php include_once './components/header.php'; ?>          
+        <section class="ScrollContenedor"> 
+<!--::::::::::::::::::::::::INICIO SESIÓN:::::::::::::::::::::::::::::::::::-->           
             <nav id="usuario-sesion">                
                 <br></br>
                 <div>
-                    <?php echo "Bienvenido, ".
+                    <?php echo " ".
                         ucfirst(strtolower($_SESSION['nombre']))." ".
                         ucfirst(strtolower($_SESSION['apellido']));
                    ?>
                 </div>
-                <div id="posicion-menu"><?php include 'vistaMenu.php';?></div>
-                <div> <a href="../sesion.php"><img id="logo-off" src="../img/off.png" title="Salir"></a></div>
             </nav>
             <br></br>
             <h1>Western Intelligent System Venezuela</h1>
@@ -49,9 +46,8 @@
                        
                 </section> 
         </section>   <!-- :::::::::::: CIERRE SECTION CONTENEDOR:::::::::::::::::::::-->               
-          <footer>                
-              <p id="footer">Copyright © 2014 Western Intelligent System Venezuela</p>
-          </footer>   
+<!--:::::::::::::::::::::::::::INICIO FOOTER ::::::::::::::::::::::::::::::::-->
+    <?php include_once './components/footer.php'; ?>   
     </body>
 </html>
 

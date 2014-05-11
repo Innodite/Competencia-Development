@@ -9,10 +9,10 @@
        
         <link rel="stylesheet" href="css/index.css" type="text/css">
     <body>
-        <header>
-            <img id="logo" src="img/asovaqueros.png"/>
+        <header id="header">
+            <img id="logo" src="img/weinsys.png"/>
         </header>            
-        <section id="contenedor">
+        <section class="ScrollContenedor">
 <!--::::::::::::::::::::::::INICIO MENÚ Y SESIÓN:::::::::::::::::::::::::::::::::::-->           
              <br></br>
 <!--::::::::::::::::::::::::INICIO FORMULARIO SESIÓN:::::::::::::::::::::::::::::::::::-->               
@@ -33,9 +33,8 @@
  <!--::::::::::::::::::::::::FIN FORMULARIO SESIÓN:::::::::::::::::::::::::::::::::::-->     
         </section>
         </section>
-          <footer>                
-              <p id="footer">Copyright © 2014 Asovaqueros - Bolívar. Derechos Reservados</p>
-          </footer>
+ <!--:::::::::::::::::::::::::::INICIO FOOTER ::::::::::::::::::::::::::::::::-->
+    <?php include_once './vistas/components/footer.php'; ?>
         
     </body>
 </html>

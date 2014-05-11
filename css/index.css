@@ -8,7 +8,7 @@ background: #281400;
 header {
     background-color:#CC9900;
     margin:auto;
-    width: 1000px;
+    width: 1050px;
     -webkit-border-radius: 40px 40px 0px 0px;      /* 1ero superior izquierda, 2do superior derecha, 3ero inferior derecha y 4to inferior izquierda*/
     -moz-border-radius:  40px 40px 0px 0px;
     -ms-border-radius:  40px 40px 0px 0px;
@@ -20,7 +20,7 @@ header {
     text-align:center;
     margin:auto;
     padding: 20px 20px;
-    width: 960px;
+    width: 1010px;
     height: 15px;
     background-color: #CC9900;
     -webkit-border-radius: 0px 0px 10px 10px;      /* 1ero superior izquierda, 2do superior derecha, 3ero inferior derecha y 4to inferior izquierda*/
@@ -50,7 +50,7 @@ h1{
 #logo {
     width:150px;
     margin-left: 85px;
-    margin-top: -18px;
+    margin-top: 20px;
     margin-bottom: -20px;
 
 }
@@ -74,19 +74,25 @@ h1{
         box-shadow: 0px 0px 20px #000000;
         }
 
+#header {
+height: 130px;
+}
 
-#contenedor{ 
-    /*padding-top: 15px;*/ 
-    width: 1000px;
-    height: 650px;
+section.ScrollContenedor
+{
+
+padding-top: 15px; 
+width: 1050px;
+height: 670px;
     margin: auto;
+/*overflow:scroll;*/
     background: #F5F0EB;
-   /* background: #D69330;*/
+
 }
 
 
 #submit{
-    
+    font-family: "Times New Roman";
     margin-top: 30px;
     width: 200px;
 }

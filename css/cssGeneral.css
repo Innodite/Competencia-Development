@@ -22,7 +22,7 @@ body {
 header {
     background-color:#CC9900;
     margin:auto;
-   width: 1000px;
+   width: 1050px;
     -webkit-border-radius: 40px 40px 0px 0px;      /* 1ero superior izquierda, 2do superior derecha, 3ero inferior derecha y 4to inferior izquierda*/
     -moz-border-radius:  40px 40px 0px 0px;
     -ms-border-radius:  40px 40px 0px 0px;
@@ -34,7 +34,7 @@ footer{
     text-align:center;
     margin:auto;
     padding: 20px 20px;
-    width: 960px;
+    width: 1100px;
     height: 15px;
     background-color: #CC9900;
     -webkit-border-radius: 0px 0px 10px 10px; /* 1ero superior izquierda, 2do superior derecha, 3ero inferior derecha y 4to inferior izquierda*/
@@ -42,6 +42,7 @@ footer{
     -ms-border-radius: 0px 0px 10px 10px; 
     -o-border-radius: 0px 0px 10px 10px; 
     border-radius: 0px 0px 10px 10px; 
+    font-weight:bold;
   
 }
     
@@ -50,7 +51,7 @@ footer{
     text-align:center;
     margin:auto;
     padding: 20px 20px;
-    width: 960px;
+    width: 1010px;
     height: 15px;
     background-color: #CC9900;
     -webkit-border-radius: 0px 0px 10px 10px;  /* 1ero superior izquierda, 2do superior derecha, 3ero inferior derecha y 4to inferior izquierda*/
@@ -77,20 +78,29 @@ footer{
 #logo {
     width:150px;
     margin-left: 70px;
-    margin-top: -18px;
+    margin-top: 15px;
     margin-bottom: -20px;
 
 }
 
-#contenedor{ 
-    padding-top: 15px; 
-    width: 1000px;
-    height: 650px;
-    margin: auto;
-   /* background-image: url('retina_wood.png');*/
-    background: #F5F0EB;
-   /* background: #D69330;*/
+#header {
+height: 130px;
 }
+
+section.ScrollContenedor {
+
+    padding-top: 15px; 
+    width: 1050px;
+    height: 670px;
+    margin: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*overflow: auto;
+    position: relative;*/
+    background: #F5F0EB;
+
+}
+
 
 #usuario-sesion {
     display: inline-block;
@@ -104,6 +114,7 @@ footer{
 
 #logo-off {
 margin-left: 20px;
+margin-top: 15px;
 }
 
 #logo-off:hover {
@@ -112,10 +123,6 @@ margin-left: 20px;
 
 }
 
-#footer {
-    font-weight:bold;
-
-}
 
 input:invalid{
     border-radius: 1px;
@@ -135,6 +142,7 @@ input:focus:required:invalid {
 }
 
 input {
+
     background-color: #ECE3DA;
     border: medium none;
     border-radius: 0.4em;
@@ -162,6 +170,7 @@ table, #lstable{
     /*background-image: url('retina_wood.png');*/
     border-radius: 8px;
     margin-top: 5px;
+      font-family: "Times New Roman";
     margin: auto;    
 }
 
@@ -171,8 +180,9 @@ table td {
     width: 130px;   
 }
 
-label{
-    color:#000000;
+label {
+    color: #000000; 
+         
 }
 
 .truco{

@@ -20,17 +20,22 @@ ul, ol {
   font-size:1em; /*Tamaño de las letras del menú*/
   display: block;
   margin-left: 3px;
+  margin-top: 15px;
+  /*font-weight: bold;*/
   -webkit-transition:all 0.2s;
   -moz-transition:all 0.2s;
   -ms-transition:all 0.2s;
   -o-transition:all 0.2s;
   transition:all 0.2s;
   }
+  #alineacion{
+      margin-top: 20px;
+  }
 
 #alineacion li a:hover{
-  background-color:#4A2500;
+ /* background: #5C2E00;*/
+ background: #6E0300;
   color: #FFFFFF;
-    /*border-radius: 0.5em;*/
 
   }
 
@@ -42,23 +47,34 @@ ul, ol {
   display: none;
   position: absolute;
   min-width: 140px;
-   }
+  margin-top: -19px;
+  z-index: 10;
+}
 
 #alineacion li:hover > ul { /*para que aparezcan las opciones del submenú*/
   display: block;
+  /*  margin-top: -5px;*/
+  margin-bottom: -5px;
 
-   }
+}
    /*::::::::::::::::::::::::*/
+   
 .menu li{
   padding: 7px;
   text-decoration: none;
   margin-left: -10px;
+  margin-bottom: -27px;
+
 }
 
 #posicion-menu {
-    margin-top: -130px;
+    /*margin-top: -130px;*/
     margin-right: 10px;
-
+    display: block;
+    
+    margin-top: -50px;
+    margin-left: 50px;
+    
 }
 
 /*::::::::::::::::::INICIO ESTILOS VISTA NOSOTROS::::::::::::::*/
@@ -67,11 +83,13 @@ ul, ol {
   margin: auto;  
 }
 
-section#presentacion section{ 
+section#presentacion section { 
+    display: inline-block;
+    vertical-align: top;
     font-size: 17px;
     text-align : justify;
     margin: 0 auto;
-    margin-left: 260px;
+    margin-left: 60px;
  }
 
 #asovaqueros{

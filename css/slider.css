@@ -8,6 +8,7 @@
 	width:100%;
 	height:auto;
 	overflow: hidden;
+        z-index: 5;
 }
 .slideshow .nivoSlider {
 	position:relative;

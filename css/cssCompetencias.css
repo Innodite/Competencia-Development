@@ -1,75 +1,84 @@
-#rankings{
+#rankings {
     width: 400px;
     height: 500px;
     display: inline-block;
     vertical-align: top;
+    margin-left: 30px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
-article{
+article {
     max-height:500px;
     overflow-y: auto;
    
 }
-#ranking{
-    width: 400px;
+#ranking {
+    width: 380px;
     max-height: 500px;
     color: #000000;
-    background-image: url('retina_wood.png');
+   /* background-image: url('retina_wood.png');*/
     border-radius: 5px;
-    margin-top: 5px;
+    margin-top: 10px;
     overflow-y: auto;
+    background: #D6C2AD;
+
+   /* background: #D6C2AD;*/
+  
 }
 
-select{
+select {
     width: 120px;
 }
-#list{
+#list {
     width: 590px;
     height: 500px;
     display: inline-block;
+    overflow-y: scroll;
+    overflow-x: scroll;
 }
 
 
-#primeraD{
+#primeraD,#segundaD, #terceraD {
    width: 326px;
-   
-    
     color: #000000;
-    background-image: url('retina_wood.png');
-    
-    border-radius: 5px;
-    display: inline-block;
-}
-#segundaD{
-   width: 326px;
-    
- 
-    color: #000000;
-    background-image: url('retina_wood.png');
    vertical-align: top;
     border-radius: 5px;
     display: inline-block;
+
 }
-#terceraD{
-   width: 326px;
-    vertical-align: top;
-    
-    color: #000000;
-    background-image: url('retina_wood.png');
-    
-    border-radius: 5px;
-    display: inline-block;
-}
-#footer{
+
+#footer {
     width: 990px;
     height: 180px;
+    margin-top: 100px;
 }
-#competidores{
+
+#competidores {
     width: 590px;
     color: #000000;
     border-radius: 5px;
     margin-top: 5px;
-    background-image: url('retina_wood.png');
-   height: 500px;
+    /* background-image: url('retina_wood.png');*/
+    height: 500px;
     display: inline-block;
+    background:#D6C2AD;
+    margin-left: 30px;
     
+}
+/*
+#competidores td label {
+    margin-right: 70px;
+}
+*/
+#primeraD h1 {
+    margin-top: -90px;
+    background: #D6C2AD;
+}
+#segundaD h1 {
+    margin-top: -90px;
+    background: #D6C2AD;
+}
+#terceraD h1 {
+    margin-top: -90px;
+    background: #D6C2AD;
 }

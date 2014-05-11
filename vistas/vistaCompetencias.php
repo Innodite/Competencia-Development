@@ -20,12 +20,11 @@
         <script type="text/javascript" src="../js/jsCompetencias.js"></script>
     </head>
     <body>
-        <header id="logo-menu">
-              <a href= "vistaPrincipal.php"><img id="logo" src="../img/asovaqueros.png"/></a>          
-        </header> 
+<!--::::::::::::::::::::::::INICIO HEADER Y MENÚ ::::::::::::::::::::::::::::-->
+        <?php include_once './components/header.php'; ?>
 <!--::::::::::::::::::::::::INICIO CONTENEDOR:::::::::::::::::::::::::::::::::::-->                
-            <section id="contenedor">
-<!--::::::::::::::::::::::::INICIO SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+            <section class="ScrollContenedor">
+<!--::::::::::::::::::::::::INICIO SESIÓN:::::::::::::::::::::::::::::::::::-->
 <!--:::::::::::::::::::::::::::::: SESIÓN :::::::::::::::::::::::::::::::::::-->           
             <nav id="usuario-sesion">
                     <br></br>
@@ -35,9 +34,6 @@
                                 ucfirst(strtolower($_SESSION['apellido']));
                         ?>
                     </div>
- <!--::::::::::::::::::::::::::::::::MENÚ:::::::::::::::::::::::::::::::::::-->             
-                    <div id="posicion-menu"><?php include 'vistaMenu.php';?></div>
-                    <div> <a href="../sesion.php"><img id="logo-off" src="../img/off.png" title="Salir"></a></div>
             </nav>
 <!--::::::::::::::::::::::::FIN SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
                 <br></br>
@@ -83,10 +79,8 @@
                     <div id="terceraD"></div>
                 </section>
         </section>
-<!-- :::::::::::::::::::::: FIN CONTENEDOR::::::::::::::::::::::::::::-->                  
-        <footer>                
-            <p id="footer">Copyright © 2014 Western Intelligent System Venezuela</p>
-        </footer>         
+<!--:::::::::::::::::::::::::::INICIO FOOTER ::::::::::::::::::::::::::::::::-->
+    <?php include_once './components/footer.php'; ?>
     </body>
 </html>
 

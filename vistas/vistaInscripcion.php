@@ -23,17 +23,19 @@
         <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="../js/jsModIns.js"></script>
 <!--        <script type="text/javascript" src="../js/jsInscripcion.js"></script>-->
-       
+        <style>
+            .hack-ig {
+                width: 30px;
+            }
+        </style>
     </head>
     <body>
-         <header id="logo-menu">
-              <a href= "vistaPrincipal.php"><img id="logo" src="../img/asovaqueros.png"/></a>
-          
-        </header> 
+<!--::::::::::::::::::::::::INICIO HEADER Y MENÚ ::::::::::::::::::::::::::::-->
+        <?php include_once './components/header.php'; ?>
 <!--::::::::::::::::::::::::INICIO CONTENEDOR:::::::::::::::::::::::::::::::::::-->                
-        <section id="contenedor">
+        <section class="ScrollContenedor">
 
-<!--::::::::::::::::::::::::INICIO SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
+<!--::::::::::::::::::::::::INICIO SESIÓN :::::::::::::::::::::::::::::::::::-->
 <!--:::::::::::::::::::::::::::::: SESIÓN :::::::::::::::::::::::::::::::::::-->           
             <nav id="usuario-sesion">
                     <br></br>
@@ -43,9 +45,6 @@
                                 ucfirst(strtolower($_SESSION['apellido']));
                         ?>
                     </div>
- <!--::::::::::::::::::::::::::::::::MENÚ:::::::::::::::::::::::::::::::::::-->             
-                    <div id="posicion-menu"><?php include 'vistaMenu.php';?></div>
-                    <div> <a href="../sesion.php"><img id="logo-off" src="../img/off.png" title="Salir"></a></div>
             </nav>
 <!--::::::::::::::::::::::::FIN SESIÓN Y MENÚ:::::::::::::::::::::::::::::::::::-->
                  <br></br>
@@ -55,9 +54,9 @@
           <div id="mi"><!--Inicio Modalidad Individual-->
             <table>
                 <tr>
-                    <td>
-                       I<input id="i" type="radio" name="asdf" value="i" checked>
-                       G<input id="g" type="radio" name="asdf" value="g">
+                    <td colspan="4" style="text-align: left">
+                        I<input id="i" type="radio" name="asdf" class="hack-ig" value="i" checked>
+                        G<input id="g" type="radio" name="asdf" class="hack-ig" value="g">
                     </td>   
                 </tr>
                 <tr>
@@ -82,9 +81,9 @@
                             <div id="mg" hidden><!-- Inicio Modalidad Grupal-->
             <table>
                 <tr>
-                    <td> 
-                        I<input id="i2" type="radio" name="asdf2" value="i2">
-                        G<input id="g2" type="radio" name="asdf2" value="g2">
+                    <td colspan="4" style="text-align: left"> 
+                        I<input id="i2" type="radio" name="asdf2" class="hack-ig" value="i2">
+                        G<input id="g2" type="radio" name="asdf2" class="hack-ig" value="g2">
                     </td>
                 </tr>
                <tr>
@@ -106,8 +105,7 @@
             <div id="list"><table></table></div>
                 </section>
 <!-- :::::::::::::::::::::: FIN CONTENEDOR::::::::::::::::::::::::::::-->                  
-        <footer>                
-            <p id="footer">Copyright © 2014 Western Intelligent System Venezuela</p>
-        </footer>         
+<!--:::::::::::::::::::::::::::INICIO FOOTER ::::::::::::::::::::::::::::::::-->
+    <?php include_once './components/footer.php'; ?>       
     </body>
 </html>

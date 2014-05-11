@@ -176,6 +176,8 @@ $('#imgbusE').on('click',function(){
       
       inscripcionE = JSON.parse(respuesta);
             clearList();
+            // head tabla
+            $('#list table').append("<tr><td class='truco'>Equipo</td><td class='truco'>Competencia</td><td></td></tr>");
                 $.each(inscripcionE, function(index, valor) {
                    $('#list table').append("<tr><td>"+ valor['nombre'] + "</td><td>"+valor['competencia']+"</td>"+"<td><img id='br"+index+"'  title='Borrar'  src='../img/del_med.png'></td>"+"</tr>");
                    $('#br'+index).on('click', function() {

@@ -22,10 +22,22 @@ class ctrPdf extends FPDF {
     function BasicTable($header){
         $this->Cell(40);
         foreach($header as $col){
-           
             $this->Cell(37.5,7,$col,1,0,'C');
-           
         }
+        $this->Ln();
+    }
+    function DinamicTable($header){
+        $this->Cell(40);
+        foreach($header as $col){
+            
+            foreach ($col as $col2){
+            $this->Cell(37.5,7,$col2,1,0,'C');
+            }
+           
+            $this->Ln();
+              $this->Cell(40);
+        }
+        
     }
     function Footer(){
         $this->SetY(-40);
@@ -44,11 +56,8 @@ class ctrPdf extends FPDF {
         $this->SetFont('Arial','B',8);
         $this->Cell(30,10,utf8_decode('Pagina ').$this->PageNo().'',0,0,'C');
     }
+    
 }
-$header = array('Competidor','Vuelta','Tiempo');
-$pdf = new ctrPdf();
-$pdf->SetFont('Arial','',10);
-$pdf->AddPage();
-$pdf->BasicTable($header);
-$pdf->Output();
+ 
+
 ?>

@@ -11,19 +11,23 @@
     
     $out = "";
     include ("../modelos/clsReportes.php");
-    
+    $opcion = isset($_POST['opc']) ? $_POST['opc'] : null;
     $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : null;
     $competencia = isset($_POST['competencia']) ? $_POST['competencia'] : null;
     
-   $p = array("fecha"=>$fecha,"competencia"=>$competencia);
+   $p = array("fecha"=>$fecha,"competencia"=>$competencia,"opcion"=>$opcion);
    $ob = new clsReportes($p);
      
     switch ($_POST['opc']) {
      
          case "BC": $out = $ob->buscarCompetencia(); break;
+         case "MD": $out = $ob->mostrarDocumento($p); break;
         default: break;
     }
+   
+    
     echo $out;
+  
  }else
    header("Location: ../index.php");
  

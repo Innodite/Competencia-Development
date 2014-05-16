@@ -14,8 +14,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Reportes</title>
-        <link rel="stylesheet" href="../css/cssReportes.css" type="text/css">
+       
         <link rel="stylesheet" href="../css/cssGeneral.css" type="text/css">
+        <script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
         <script type="text/javascript" src="../js/utils.js"></script>
         <script type="text/javascript" src="../js/jsReportes.js"></script>
     </head>
@@ -49,7 +50,7 @@
             <tr>
                 <td><input type="date" id="fecha" onkeyup="buscarCompetencia()"></td>
                 <td><select id="competencia"></select></td>
-                <td><img id="IC" src="../img/play11.png" width="30" height="30" onclick="mostrarCompetencia()" title="Mostrar Competencia"></td>
+                <td><img id="IC" src="../img/play11.png" width="30" height="30" title="Mostrar Competencia"></td>
                 <td> 
                     <div id="fin" style="visibility:hidden">
                         <img id="FC" src="../img/log.png" width="30" height="30" onclick="finComp()" title="Finalizar Competencia">

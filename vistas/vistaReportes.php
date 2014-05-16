@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <td><input type="date" id="fecha" onkeyup="buscarCompetencia()"></td>
-                <td><select id="competencia"></select></td>
+                <td><select id="competencia"><option value="0">Seleccione opci&oacute;n</option> </select></td>
                 <td><img id="IC" src="../img/play11.png" width="30" height="30" title="Mostrar Competencia"></td>
                 <td> 
                     <div id="fin" style="visibility:hidden">

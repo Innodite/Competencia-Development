@@ -23,7 +23,7 @@ function actualizar(fila, id){
         document.getElementById("imgf"+fila).src = "../img/up_med.png";
         document.getElementById("imgf"+fila).onclick =  function(event){ modificar(fila, valor ,id); };
         document.getElementById("lstable").rows[fila].cells[0].innerHTML = valor;
-    };
+    }
 }
 
 function modificar(fila,value,id){

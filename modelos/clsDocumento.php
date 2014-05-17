@@ -12,19 +12,23 @@ $comp = $_GET['comp'];
 
     $bd = new clsConexion();
     $heade = array('jose','1','2.134');
-    $header = array('Competidor','Vuelta','Tiempo');
+    $header = array('Competidor','Tiempo','Vuelta','Salida');
     $pdf = new ctrPdf();
     $pdf->SetFont('Arial','',10);
     $pdf->AddPage();
     $pdf->BasicTable($header);
-    $sql = "select * from  ranking_barriles_poste WHERE id_competencia="."$comp";
+    $sql = "SELECT nombre,tiempo,vuelta,salida,id_competencia
+FROM ranking rank,inscripcion insc,competidor compe 
+WHERE rank.id_inscripcion = insc.id_inscripcion 
+AND insc.cedula = compe.cedula AND insc.id_competencia="."$comp"."";
     $datos = $bd->filtro($sql);
     $out = array();
         while($columna = $bd->proximo($datos)){
                      $out[] = array(
-                         'id_inscripcion'=>$columna[0],
-                         'cedula'=>$columna[1],
-                         'nombre'=>$columna[2]); 
+                         'nombre'=>$columna[0],
+                         'tiempo'=>$columna[1],
+                         'vuelta'=>$columna[2],
+                         'salida'=>$columna[3]); 
                       
                 }
                 $bd->cerrarFiltro($datos);

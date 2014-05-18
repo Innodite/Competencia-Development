@@ -42,27 +42,34 @@
                  <h1>INSCRIPCION DE COMPETIDORES</h1>
         <table>
             <tr>
-                <td><label>Fecha de Competencia</label></td>
-                <td><label>Competencia</label></td>
-                <td><label>Buscar Competencia</label></td>
+                <td><label>Desde</label></td>
+                <td><label>Hasta</label></td>
+                <td><label>Status</label></td>
+                <td><label>Modalidad</label></td>
+                <td><label>Buscar</label></td>
                 
             </tr>
             <tr>
-                <td><input type="date" id="fecha" onkeyup="buscarCompetencia()"></td>
-                <td><select id="competencia"><option value="0">Seleccione opci&oacute;n</option> </select></td>
-                <td><img id="IC" src="../img/play11.png" width="30" height="30" title="Mostrar Competencia"></td>
-                <td> 
-                    <div id="fin" style="visibility:hidden">
-                        <img id="FC" src="../img/log.png" width="30" height="30" onclick="finComp()" title="Finalizar Competencia">
-                    </div>
+                <td><input type="date" id="fecha1" placeholder="dd-mm-yyyy" onkeyup="getSeparator('fecha1','-')"></td>
+                <td><input type="date" id="fecha2" placeholder="dd-mm-yyyy" onkeyup="getSeparator('fecha2','-')"></td>
+                <td>
+                    <select name="sts" id="sts">
+                        <option value="0">Todos</option>
+                        <option value="VAL">Pendiente</option>
+                        <option value="FC">Finalizada</option>
+                    </select>
                 </td>
+                <td>
+                    <select name="tcomp" id="tcomp">
+                        <option value="0">Todas</option>
+                        <option value="INDIVIDUAL">Individual</option>
+                        <option value="GRUPO">Equipos</option>
+                    </select>
+                </td>
+                <td><img id="IC" src="../img/lupa.png" width="30" height="30" title="Mostrar Competencias"></td>
             </tr>
         </table>
-                <div id="list"></div>
-                <aside id="rankings">
-                    <article><div id="rank"></div></article>
-                    <article id="general"><div id="rankG"></div></article>
-                </aside>
+                <div id="list"><table></table></div>
         </section>
 <!-- :::::::::::::::::::::: FIN CONTENEDOR::::::::::::::::::::::::::::-->                  
 <!--:::::::::::::::::::::::::::INICIO FOOTER ::::::::::::::::::::::::::::::::-->

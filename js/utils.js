@@ -36,3 +36,30 @@ function send_form(url, post_data){
    return false;
   };
 }
+
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+/**
+ * Funcion que valida formato de fecha para input date dd-mm-yyyy
+ **
+ * @param {String} id Identificador del Objeto DOM
+ * @param {String} sp Caracter que separa dia-mes-año
+ */
+function getSeparator(id, sp){
+    
+    var n = document.getElementById(id).value.length;
+    
+    if (n > 0){
+        if (!isNumber(document.getElementById(id).value.substr(n-1,n))){
+            document.getElementById(id).value = document.getElementById(id).value.substr(0,--n);
+        }
+    }
+    
+    if (n === 2 || n === 5){
+        document.getElementById(id).value = document.getElementById(id).value + sp;
+    }
+    if (n > 10){
+        document.getElementById(id).value = document.getElementById(id).value.substr(0,10);
+    }
+}

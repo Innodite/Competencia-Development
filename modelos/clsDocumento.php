@@ -6,21 +6,30 @@
  * and open the template in the editor.
  */
 include 'clsConexion.php';
+include './clsUtils.php';
 include '../controladores/ctrPdf.php';
-$comp = $_GET['comp'];
+
+$comp      = isset($_GET['comp'])      ? $_GET['comp']      : "";
+$fecha     = isset($_GET['fecha'])     ? $_GET['fecha']     : "";
+$nombre    = isset($_GET['nombre'])    ? $_GET['nombre']    : "";
+$modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
 
 
     $bd = new clsConexion();
-    $heade = array('jose','1','2.134');
-    $header = array('Competidor','Tiempo','Vuelta','Salida');
+    $header = ($modalidad == 'INDIVIDUAL') ? array('Competidor','Tiempo','Vuelta','Salida')
+                                           : array('Equipo','Tiempo','Becerros','Vuelta','Salida');
     $pdf = new ctrPdf();
+    $pdf->modalidad = ucfirst(strtolower($modalidad));
+    $pdf->fecha      = clsUtils::setFormatFecha($fecha);
+    $pdf->nombre     = $nombre;
     $pdf->SetFont('Arial','',10);
     $pdf->AddPage();
     $pdf->BasicTable($header);
+    
     $sql = "SELECT nombre,tiempo,vuelta,salida,id_competencia
-FROM ranking rank,inscripcion insc,competidor compe 
-WHERE rank.id_inscripcion = insc.id_inscripcion 
-AND insc.cedula = compe.cedula AND insc.id_competencia="."$comp"."";
+            FROM ranking rank,inscripcion insc,competidor compe 
+            WHERE rank.id_inscripcion = insc.id_inscripcion 
+            AND insc.cedula = compe.cedula AND insc.id_competencia=$comp";
     $datos = $bd->filtro($sql);
     $out = array();
         while($columna = $bd->proximo($datos)){

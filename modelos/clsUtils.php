@@ -96,6 +96,17 @@ class clsUtils extends clsConexion{
     
     	return $new_array;
     }
+    
+    public static function setFormatFecha($date,$out="dd-mm-yyyy"){
+        $sp = strpos($date,"/") === false ? "-" : "/";
+        $tmp = explode($sp,$date);
+        $sp = strpos($out,"/") === false ? "-" : "/";
+        $tmp1 = explode($sp,$out);
+        $aux = "";
+        if (strlen($tmp1[0]) == 4){ if (strlen($tmp[0]) < 4){ $aux = $tmp[0]; $tmp[0] = $tmp[2]; $tmp[2] = $aux; }}
+        if (strlen($tmp1[2]) == 4){ if (strlen($tmp[2]) < 4){ $aux = $tmp[2]; $tmp[2] = $tmp[0]; $tmp[0] = $aux; }}
+        return $tmp[0].$sp.$tmp[1].$sp.$tmp[2];
+    }
 
 }
 

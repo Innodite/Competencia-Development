@@ -22,6 +22,7 @@ class ctrPdf extends FPDF {
         $this->SetFont('Arial','B',8);
         $this->SetX(-45);
         $this->Cell(0,10,date("d-m-Y"),0,'R');
+        
         $this->SetX(-45);
         $this->Cell(0,20,"User: $user",0,'R');
         $this->SetFont('Arial','B',12);
@@ -34,9 +35,16 @@ class ctrPdf extends FPDF {
         $this->SetFont('Arial','B',13); 
          
     }
+    function titulo($texto,$x,$y){
+        $this->SetXY($x,$y);
+        $this->SetFont('Arial','B',13); 
+        $this->Cell(0,30,utf8_decode($texto),0,0,'C');
+        
+    }
     
-    function BasicTable($header){
-        $this->Cell(20);
+    function BasicTable($header,$x,$y){
+        $this->SetXY($x,$y);
+         $this->SetFont('Arial','',13); 
         $this->SetFillColor(176, 167, 167);
         foreach($header as $col){
             $this->Cell(37.5,7,$col,1,0,'C',true);
@@ -44,8 +52,31 @@ class ctrPdf extends FPDF {
         $this->Ln();
     }
     
-    function DinamicTable($header){
-        $this->Cell(20);
+    function DinamicTable($header,$x,$y){
+        
+        $this->SetXY($x,$y-13);
+     
+        //$this->Cell(20);
+        foreach($header as $col){
+           
+            foreach ($col as $col2){
+            $this->Cell(37.5,7,$col2,1,0,'C');
+            
+            }
+           
+            //$this->Ln();
+              //$this->Cell(20);
+            $this->SetXY($x,$y-6);
+           $y = $y+7;
+        }
+         
+         return $y;
+    }
+    function DinamicTable2($header,$x,$y){
+        
+        $this->SetXY($x,$y);
+     
+        //$this->Cell(20);
         foreach($header as $col){
             
             foreach ($col as $col2){
@@ -53,9 +84,13 @@ class ctrPdf extends FPDF {
             }
            
             $this->Ln();
-              $this->Cell(20);
+              //$this->Cell(20);
+            $this->SetXY($x,$y+7);
+           $y = $y+7;
         }
+        
     }
+    
     
     function Footer(){
         $this->SetY(-20);
@@ -65,8 +100,10 @@ class ctrPdf extends FPDF {
         
         $this->SetY(-15); 
         $this->SetFont('Arial','B',8);
-        $this->Cell(80);
-        $this->Cell(30,10,utf8_decode('Pag. ').$this->PageNo().' de '.count($this->pages),0,0,'C');
+        //$this->Cell(80);
+        //$this->Cell(30,10,utf8_decode('Pag. ').$this->PageNo().' de '.count($this->pages),0,0,'C');
+        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+       
     }
     
 }

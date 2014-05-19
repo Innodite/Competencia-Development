@@ -25,7 +25,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
     $pdf->nombre     = $nombre;
     $pdf->SetFont('Arial','',10);
     $pdf->AddPage();
-    $pdf->SetAutoPageBreak(0);
+    
     $pdf->titulo('Listado General', 20, 27);
     $pdf->BasicTable($header,30,45);
     if($modalidad == INDIVIDUAL){
@@ -51,8 +51,8 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
      list($cont,$contador)= $pdf->DinamicTable($out,30,65,0);
      
     //Ranking
-    $pdf->titulo('Ranking'.$cont, 20, $contador-22);
-    $pdf->BasicTable($header2,50,$contador-3);
+    $pdf->titulo('Ranking'.$cont, 20, $contador-15);
+    $pdf->BasicTable($header2,50,$contador+2);
      $i = 1;
                 
                 $datos2 = $bd->filtro("select * from ranking_barriles_poste WHERE id_competencia = '$comp'");
@@ -66,7 +66,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
                 }
          $bd->cerrarFiltro($datos2);
          
-          list($cont2,$contador2) = $pdf->DinamicTable2($out2,50,$contador+4,$cont);
+          list($cont2,$contador2) = $pdf->DinamicTable2($out2,50,$contador+9,$cont);
         //Primera Division
          $pdf->titulo('Primera Division'.$cont2, 20, $contador2-10);
          $pdf->BasicTable($header2,50,$contador2+8);
@@ -87,7 +87,10 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
          $pdf->titulo('Segunda Division'.$cont3, 20, $contador3-10);
          $pdf->BasicTable($header2,50,$contador3+8);
          $q = 1;
-         $datos4 = $bd->filtro("select * from segunda_division WHERE id_competencia = '$comp'");
+         $datos4 = $bd->filtro("SELECT nombre,tiempo,vuelta,salida,id_competencia
+            FROM ranking rank,inscripcion insc,competidor compe 
+            WHERE rank.id_inscripcion = insc.id_inscripcion 
+            AND insc.cedula = compe.cedula AND insc.id_competencia=$comp"."ORDER BY 3,4");
          $out4 = array();
             while($columna4 = $bd->proximo($datos4)){
                      $out4[] = array(

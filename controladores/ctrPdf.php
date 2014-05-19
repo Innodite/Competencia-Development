@@ -35,7 +35,7 @@ class ctrPdf extends FPDF {
         $this->SetFont('Arial','B',13); 
          
     }
-    function titulo($texto,$x,$y){
+    function titulo($texto,$x,$y,$cont){
         $this->SetXY($x,$y);
         $this->SetFont('Arial','B',13); 
         $this->Cell(0,30,utf8_decode($texto),0,0,'C');
@@ -52,33 +52,30 @@ class ctrPdf extends FPDF {
         $this->Ln();
     }
     
-    function DinamicTable($header,$x,$y){
-        
+    function DinamicTable($header,$x,$y,$cont){
+    
         $this->SetXY($x,$y-13);
-     
-        //$this->Cell(20);
+ 
         foreach($header as $col){
            
             foreach ($col as $col2){
             $this->Cell(37.5,7,$col2,1,0,'C');
             
             }
-           
-            //$this->Ln();
-              //$this->Cell(20);
             $this->SetXY($x,$y-6);
            $y = $y+7;
-        }
-      
         
-            return $y;
+        }
+         
+        
+            return array ($cont,$y);
         
     }
     function DinamicTable2($header,$x,$y){
-        
+       
         $this->SetXY($x,$y);
      
-        //$this->Cell(20);
+       
         foreach($header as $col){
             
             foreach ($col as $col2){
@@ -89,9 +86,10 @@ class ctrPdf extends FPDF {
               //$this->Cell(20);
             $this->SetXY($x,$y+7);
            $y = $y+7;
+       
         }
        
-            return $y;
+            return array ($cont,$y);
         
     }
     

@@ -53,7 +53,10 @@ class ctrPdf extends FPDF {
     }
     
     function DinamicTable($header,$x,$y,$cont){
-    
+    if($cont==16){
+        $this->AddPage();
+        $cont=0;
+     $y=43;}
         $this->SetXY($x,$y-13);
  
         foreach($header as $col){
@@ -64,14 +67,14 @@ class ctrPdf extends FPDF {
             }
             $this->SetXY($x,$y-6);
            $y = $y+7;
-        
+           $cont++;
         }
          
         
             return array ($cont,$y);
         
     }
-    function DinamicTable2($header,$x,$y){
+    function DinamicTable2($header,$x,$y,$cont){
        
         $this->SetXY($x,$y);
      

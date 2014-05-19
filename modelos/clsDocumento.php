@@ -25,6 +25,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
     $pdf->nombre     = $nombre;
     $pdf->SetFont('Arial','',10);
     $pdf->AddPage();
+    $pdf->SetAutoPageBreak(0);
     $pdf->titulo('Listado General', 20, 27);
     $pdf->BasicTable($header,30,45);
     if($modalidad == INDIVIDUAL){
@@ -48,6 +49,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
      $bd->cerrarFiltro($datos);
      
      list($cont,$contador)= $pdf->DinamicTable($out,30,65,0);
+     
     //Ranking
     $pdf->titulo('Ranking'.$cont, 20, $contador-22);
     $pdf->BasicTable($header2,50,$contador-3);

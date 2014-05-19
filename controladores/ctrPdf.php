@@ -69,8 +69,10 @@ class ctrPdf extends FPDF {
             $this->SetXY($x,$y-6);
            $y = $y+7;
         }
-         
-         return $y;
+      
+        
+            return $y;
+        
     }
     function DinamicTable2($header,$x,$y){
         
@@ -88,6 +90,8 @@ class ctrPdf extends FPDF {
             $this->SetXY($x,$y+7);
            $y = $y+7;
         }
+       
+            return $y;
         
     }
     

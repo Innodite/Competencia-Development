@@ -13,7 +13,7 @@ $comp      = isset($_GET['comp'])      ? $_GET['comp']      : "";
 $fecha     = isset($_GET['fecha'])     ? $_GET['fecha']     : "";
 $nombre    = isset($_GET['nombre'])    ? $_GET['nombre']    : "";
 $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
-
+$suma = 0;
 
     $bd = new clsConexion();
     $header = ($modalidad == 'INDIVIDUAL') ? array('Competidor','Tiempo','Vuelta','Salida')
@@ -25,18 +25,19 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
     $pdf->nombre     = $nombre;
     $pdf->SetFont('Arial','',10);
     $pdf->AddPage();
-    $titulo = 'Listado General';
-    $titulo2 = 'Ranking';
-    $pdf->titulo($titulo, 20, 27);
+    $pdf->titulo('Listado General', 20, 27);
     $pdf->BasicTable($header,30,45);
     if($modalidad == INDIVIDUAL){
-       
+        
+    //Listado General 
     $sql = "SELECT nombre,tiempo,vuelta,salida,id_competencia
             FROM ranking rank,inscripcion insc,competidor compe 
             WHERE rank.id_inscripcion = insc.id_inscripcion 
             AND insc.cedula = compe.cedula AND insc.id_competencia=$comp"."ORDER BY 3,4";
     $datos = $bd->filtro($sql);
     $out = array();
+    $registro =$bd->getNumRows();
+   
         while($columna = $bd->proximo($datos)){
                      $out[] = array(
                          'nombre'=>$columna[0],
@@ -46,25 +47,61 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
                       
                 }
      $bd->cerrarFiltro($datos);
+     $contador =  $pdf->DinamicTable($out,30,65);
+    //Ranking
     
-    $contador =  $pdf->DinamicTable($out,30,65);
-    $pdf->titulo($titulo2, 20, $contador-22);
-  //$pdf->Cell(0,195,'numero de registros '.$contador.'',0,0,'C');
+    $pdf->titulo($registro, 20, $contador-22);
     $pdf->BasicTable($header2,50,$contador-3);
      $i = 1;
                 
-                $r = $bd->filtro("select * from ranking_barriles_poste WHERE id_competencia = '$comp'");
-                 $out2 = array();
-        while($columna2 = $bd->proximo($r)){
+                $datos2 = $bd->filtro("select * from ranking_barriles_poste WHERE id_competencia = '$comp'");
+                $registro2 = $registro + $bd->getNumRows();
+                if($registro2 == 18){
+                    
+                }
+                $out2 = array();
+        while($columna2 = $bd->proximo($datos2)){
                      $out2[] = array(
                          'nombre'=>$columna2[0],
                          'tiempo'=>$columna2[1],
-                         'vuelta'=>$columna2[2]); 
-                      
+                         'posicion'=>$i); 
+                       $i++; 
                 }
-         $bd->cerrarFiltro($r);
+         $bd->cerrarFiltro($datos2);
          $bd->cerrarConexion();    
-         $pdf->DinamicTable2($out2,50,$contador+4);
+         $contador2 = $pdf->DinamicTable2($out2,50,$contador+4);
+        //Primera Division
+         $pdf->titulo('Primera Division'.$registro2, 20, $contador2-10);
+         $pdf->BasicTable($header2,50,$contador2+8);
+         $j = 1;
+         $datos3 = $bd->filtro("select * from ranking_barriles_poste WHERE id_competencia = '$comp'");
+         $out3 = array();
+            while($columna2 = $bd->proximo($r)){
+                     $out3[] = array(
+                         'nombre'=>$columna2[0],
+                         'tiempo'=>$columna2[1],
+                         'posicion'=>$i); 
+                       $i++; 
+                }
+         $bd->cerrarFiltro($datos3);
+         $bd->cerrarConexion();    
+         $contador3 = $pdf->DinamicTable2($out2,50,$contador2+15);
+        //Segunda Division
+         $pdf->titulo('Segunda Division', 20, $contador3-10);
+         $pdf->BasicTable($header2,50,$contador3+8);
+         $j = 1;
+         $datos4 = $bd->filtro("select * from ranking_barriles_poste WHERE id_competencia = '$comp'");
+         $out4 = array();
+            while($columna2 = $bd->proximo($r)){
+                     $out4[] = array(
+                         'nombre'=>$columna2[0],
+                         'tiempo'=>$columna2[1],
+                         'posicion'=>$j); 
+                       $j++; 
+                }
+         $bd->cerrarFiltro($datos4);
+         $bd->cerrarConexion();    
+         $contador4 = $pdf->DinamicTable2($out2,50,$contador3+15);
     }
      if($modalidad == GRUPO){
          

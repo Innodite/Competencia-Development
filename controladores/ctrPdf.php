@@ -18,7 +18,7 @@ class ctrPdf extends FPDF {
         $this->SetFont('Arial','B',16);
         $this->Cell(80);
         $this->Cell(30,15,utf8_decode('Western Intelligent System Venezuela'),0,0,'C');
-        //$this->Cell(50);
+        
         $this->SetFont('Arial','B',8);
         $this->SetX(-45);
         $this->Cell(0,10,date("d-m-Y"),0,'R');
@@ -65,11 +65,11 @@ class ctrPdf extends FPDF {
             $this->SetXY($x,$y-6);
            $y = $y+7;
            $cont++;
-           if($cont==18){
+           if($cont==22){
         $this->AddPage();
         $cont=0;
         $y=50;
-        
+        $this->SetXY(50,50);
            }
         }
          
@@ -93,7 +93,7 @@ class ctrPdf extends FPDF {
             $this->SetXY($x,$y+7);
            $y = $y+7;
            $cont++;
-           if($cont==18){
+           if($cont==22){
         $this->AddPage();
         $cont=0;
         $y=50;
@@ -111,11 +111,8 @@ class ctrPdf extends FPDF {
         $this->SetFont('Arial','B',7);
         $this->Cell(20);
         $this->Cell(30,10,utf8_decode('Dirección: Edo-Bolívar Puerto Ordaz | Teléfono: 0424-9172244 / 0286-9224857 | Correo: bolivarwestern@gmail.com'),0,'C');
-        
         $this->SetY(-15); 
         $this->SetFont('Arial','B',8);
-        //$this->Cell(80);
-        //$this->Cell(30,10,utf8_decode('Pag. ').$this->PageNo().' de '.count($this->pages),0,0,'C');
         $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
        
     }

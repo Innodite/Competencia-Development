@@ -119,7 +119,7 @@ class clsCompetencias extends clsConexion{
                                     $str .= "<tr>
                                                 <td>$equipo[1]</td>
                                                 <td> $this->ronda</td>
-                                                <td><input type='number' size='5' min='1' max='99.999' step='01.001'  id='tiempof$i' required/></td>
+                                                <td><input type='number' size='5' min='1' max='99.999' step='0.001'  id='tiempof$i' required/></td>
                                                 <td><input type='number' size='1' min='1' max='5' step='1'  id='becerrof$i' required/></td>
                                                 <td>
                                                     <img src='../img/notes7.png' width='25' height='25' id='agregarf$i' title='Agregar'  onclick=\"agregarTE(".$i.",'$equipo[0]','$equipo[2]','$this->ronda')\" >
@@ -269,7 +269,7 @@ class clsCompetencias extends clsConexion{
              $row = $this->proximo($r);
              $falla = $row[0] + 1;
              
-             $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta, tiempo,becerro) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo,$this->becerros)") ? true : false;
+             $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta,tiempo,becerro) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo,$this->becerros)") ? true : false;
              
              $sql = "UPDATE ranking SET  falla=$falla  WHERE id_inscripcion='$this->id_inscripcion' ";
              $this->filtro($sql);

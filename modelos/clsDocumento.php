@@ -134,6 +134,25 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
     }
      if($modalidad == GRUPO){
          
+         //Listado General 
+    $sql = "select eq.nombre,tiempo,becerro,vuelta,salida from ranking rank,inscripcion insc,equipo eq
+where rank.id_inscripcion = insc.id_inscripcion 
+AND insc.id_equipo = eq.id_equipo ORDER BY 4,5";
+    $datos = $bd->filtro($sql);
+    $out = array();
+    $registro =$bd->getNumRows();
+        while($columna = $bd->proximo($datos)){
+                     $out[] = array(
+                         'nombre'=>$columna[0],
+                         'tiempo'=>$columna[1],
+                         'becerro'=>$columna[2],
+                         'vuelta'=>$columna[3],
+                         'salida'=>$columna[4]); 
+                      
+                }
+     $bd->cerrarFiltro($datos);
+     
+     list($cont,$contador)= $pdf->DinamicTable($out,30,65,0);
          
      }
  

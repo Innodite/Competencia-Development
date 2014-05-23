@@ -18,7 +18,8 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
     $bd = new clsConexion();
     $header = ($modalidad == 'INDIVIDUAL') ? array('Competidor','Tiempo','Vuelta','Salida')
                                       : array('Equipo','Tiempo','Becerros','Vuelta','Salida');
-    $header2 = array('Competidor','Tiempo','Posicion');   
+    $header2 = ($modalidad == 'INDIVIDUAL') ? array('Competidor','Tiempo','Posicion')
+                                      : array('Competidor','Tiempo','Becerros', 'Posicion');
     $pdf = new ctrPdf();
     $pdf->modalidad = ucfirst(strtolower($modalidad));
     $pdf->fecha      = clsUtils::setFormatFecha($fecha);
@@ -153,7 +154,25 @@ AND insc.id_equipo = eq.id_equipo ORDER BY 4,5";
      $bd->cerrarFiltro($datos);
      
      list($cont,$contador)= $pdf->DinamicTable($out,30,65,0);
+     
+     //Ranking
+    $pdf->titulo('Ranking', 20, $contador-17);
+    $pdf->BasicTable($header2,50,$contador+2);
+    $i = 1;
+                
+                $datos2 = $bd->filtro("select * from ranking_encierro WHERE id_competencia = '$comp'");
+                 $out2 = array();
+        while($columna2 = $bd->proximo($datos2)){
+                     $out2[] = array(
+                         'nombre'=>$columna2[0],
+                         'tiempo'=>$columna2[1],
+                         'becerro'=>$columna2[3],
+                         'posicion'=>$i); 
+                       $i++; 
+                }
+         $bd->cerrarFiltro($datos2);
          
+          list($cont2,$contador2) = $pdf->DinamicTable2($out2,50,$contador+9,$cont);
      }
  
     $pdf->AliasNbPages();

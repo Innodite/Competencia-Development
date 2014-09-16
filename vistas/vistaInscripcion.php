@@ -62,13 +62,13 @@
                 <tr>
                     <td>Cedula</td>
                     <td>Competidor</td>
-                    <td>Edad</td>
+                    <td>Fecha de Nacimiento</td>
                     <td>Competencia</td> 
                 </tr>
                 <tr>
                     <td><input  class="input" id="cedula"      type="text"                                required></td>
                     <td><input  class="input" id="nombre"      type="text"                                required></td>
-                    <td><input  class="input" id="edad"        type="text"                                required></td>
+                    <td><input  class="input" id="edad"        type="date"   placeholder="dd-mm-aaaa"     required></td>
                     <td><select class="input" id="competencia"></select>                                           </td>                     
                     <td>
                         <input id="comp" type="hidden" value="N">

@@ -47,7 +47,7 @@ class ctrPdf extends FPDF {
          $this->SetFont('Arial','',13); 
         $this->SetFillColor(176, 167, 167);
         foreach($header as $col){
-            $this->Cell($this->modalidad =='Grupo' ? 33 : 37.5,7,$col,1,0,'C',true);
+            $this->Cell($this->modalidad =='Grupo' ? 25 : 37.5,7,$col,1,0,'C',true);
         }
         $this->Ln();
     }
@@ -59,7 +59,7 @@ class ctrPdf extends FPDF {
         foreach($header as $col){
            
             foreach ($col as $col2){ 
-            $this->Cell($this->modalidad =='Grupo' ? 33 : 37.5,7,$col2,1,0,'C');
+            $this->Cell($this->modalidad =='Grupo' ? 25 : 37.5,7,$col2,1,0,'C');
             
             }
             $this->SetXY($x,$y-6);
@@ -85,7 +85,7 @@ class ctrPdf extends FPDF {
         foreach($header as $col){
             
             foreach ($col as $col2){
-            $this->Cell($this->modalidad =='Grupo' ? 33 : 37.5,7,$col2,1,0,'C');
+            $this->Cell($this->modalidad =='Grupo' ? 25 : 37.5,7,$col2,1,0,'C');
             }
            
             $this->Ln();

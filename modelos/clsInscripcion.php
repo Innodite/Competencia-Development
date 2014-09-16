@@ -123,20 +123,20 @@ public function listarCompetenciaEquip(){
         
         public function buscarCompetidor(){
             
-            $sql = "SELECT cedula, nombre,edad FROM competidor WHERE cedula = $this->cedula";
+            $sql = "SELECT cedula, nombre,edad,fecha_nac FROM competidor WHERE cedula = $this->cedula";
             $r = $this->filtro($sql);
             
             if ($this->getNumRows() > 0){
                 
                 $fila = $this->proximo($r);
-                $out = array('ci'=>$fila[0],'nombre'=>$fila[1],'edad'=>$fila[2]);
+                $out = array('ci'=>$fila[0],'nombre'=>$fila[1],'edad'=>$fila[3]);
                                         }
             else{ return 0;}
             
             return $out;  
         }
         public function inscribirCompetidor(){
-            $sql = "SELECT inscribir_competidor($this->cedula,lower('$this->nombre'),$this->edad,$this->competencia,'$this->comp')";
+            $sql = "SELECT inscribir_competidor($this->cedula,lower('$this->nombre'),'$this->edad',$this->competencia,'$this->comp')";
             if($this->filtro($sql))
             {return 1;}
             else{
@@ -157,11 +157,7 @@ public function listarCompetenciaEquip(){
 
       
     public function listarCompetenciaInd(){
-        $sql = "select comp.id_competencia,(comp.fecha || '/' || mc.nombre || '/' || cat.nombre) AS nombre
-                FROM competencia AS comp,categoria AS cat,modo_competencia AS mc 
-                WHERE comp.id_modo_competencia = mc.id_modo_competencia 
-                AND comp.id_categoria = cat.id_categoria AND comp.sts = 'VAL' AND mc.modalidad = 'individual'
-                AND $this->edad BETWEEN cat.edad_min AND cat.edad_max";
+        $sql = "select * from cat_insc_ind('$this->edad')";
         $datos = $this->filtro($sql);
         if ($this->getNumRows() > 0){
        $out = array();

@@ -17,7 +17,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
 
     $bd = new clsConexion();
     $header = ($modalidad == 'INDIVIDUAL') ? array('Competidor','Tiempo','Vuelta','Salida')
-                                      : array('Equipo','Tiempo','Becerros','Vuelta','Salida');
+                                      : array('Equipo','Vuelta','Salida','Becerro','Encierro','Tiempo');
     $header2 = ($modalidad == 'INDIVIDUAL') ? array('Competidor','Tiempo','Posicion')
                                       : array('Competidor','Tiempo','Becerros', 'Posicion');
     $pdf = new ctrPdf();
@@ -120,7 +120,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
         $pdf->titulo('No Clasificados', 20, $contador5-10);
          $pdf->BasicTable($header2,50,$contador5+8);
          $f = 1;
-         $datos6 = $bd->filtro("select * from no_clasificados WHERE id_competencia = '$comp'");
+         $datos6 = $bd->filtro("select * from no_clasificados WHERE id_competencia = '$comp' ORDER BY 2");
          $out6 = array();
             while($columna6 = $bd->proximo($datos6)){
                      $out6[] = array(
@@ -136,19 +136,20 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
      if($modalidad == GRUPO){
          
          //Listado General 
-    $sql = "select eq.nombre,tiempo,becerro,vuelta,salida from ranking rank,inscripcion insc,equipo eq
+    $sql = "select eq.nombre,vuelta,salida,numero,becerro,tiempo from ranking rank,inscripcion insc,equipo eq
 where rank.id_inscripcion = insc.id_inscripcion 
-AND insc.id_equipo = eq.id_equipo ORDER BY 4,5";
+AND insc.id_equipo = eq.id_equipo ORDER BY 2,3";
     $datos = $bd->filtro($sql);
     $out = array();
     $registro =$bd->getNumRows();
         while($columna = $bd->proximo($datos)){
                      $out[] = array(
                          'nombre'=>$columna[0],
-                         'tiempo'=>$columna[1],
-                         'becerro'=>$columna[2],
-                         'vuelta'=>$columna[3],
-                         'salida'=>$columna[4]); 
+                         'vuelta'=>$columna[1],
+                         'salida'=>$columna[2],
+                         'numero'=>$columna[3],
+                         'becerro'=>$columna[4],
+                         'tiempo'=>$columna[5]); 
                       
                 }
      $bd->cerrarFiltro($datos);
@@ -157,7 +158,7 @@ AND insc.id_equipo = eq.id_equipo ORDER BY 4,5";
      
      //Ranking
     $pdf->titulo('Ranking', 20, $contador-17);
-    $pdf->BasicTable($header2,50,$contador+2);
+    $pdf->BasicTable($header2,60,$contador+2);
     $i = 1;
                 
                 $datos2 = $bd->filtro("select * from ranking_encierro WHERE id_competencia = '$comp'");
@@ -165,14 +166,14 @@ AND insc.id_equipo = eq.id_equipo ORDER BY 4,5";
         while($columna2 = $bd->proximo($datos2)){
                      $out2[] = array(
                          'nombre'=>$columna2[0],
-                         'tiempo'=>$columna2[1],
+                         'tiempo'=>$columna2[2],
                          'becerro'=>$columna2[3],
                          'posicion'=>$i); 
                        $i++; 
                 }
          $bd->cerrarFiltro($datos2);
          
-          list($cont2,$contador2) = $pdf->DinamicTable2($out2,50,$contador+9,$cont);
+          list($cont2,$contador2) = $pdf->DinamicTable2($out2,60,$contador+9,$cont);
      }
  
     $pdf->AliasNbPages();

@@ -41,7 +41,7 @@
         <table>
             <tr>
                 <td>Fecha</td>
-                <td>Modalidad</td>
+                <td>Estilos</td>
                 <td>Competencia</td>
                 <td>Iniciar</td>
                 <td>Finalizar</td>
@@ -51,8 +51,9 @@
                 <td><input type="date" id="fecha" onkeyup="buscarCompetencia()"></td>
                 <td>
                     <select id="modalidad" onchange="buscarCompetencia()">
-                        <option  value="individual">Individual</option>
-                        <option  value="grupo">Grupo</option>
+                        <option  value="barriles">Barriles</option>
+                        <option  value="poste">Poste</option>
+                        <option  value="encierro">Encierro</option>
                     </select>
                 </td>
                 <td><select id="competencia"></select></td>

@@ -77,6 +77,7 @@ function terceraDivision(){
 function agregarTE(cont,id_inscripcion,id_competencia,ronda){
     var r = send_form("../controladores/ctrCompetencias.php", "opc=AT&tiempo=" + document.getElementById("tiempof"+cont).value +
                                                             "&becerros=" + document.getElementById("becerrof"+cont).value +
+                                                            "&numero=" +document.getElementById("numerof"+cont).value+
                                                           "&id_inscripcion=" +id_inscripcion+
                                                           "&id_competencia=" +id_competencia+
                                                           "&ronda=" +ronda+

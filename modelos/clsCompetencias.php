@@ -17,7 +17,7 @@ class clsCompetencias extends clsConexion{
     private $total;
     private $salida;
     private $becerros;
-
+    private $numero;
 
     public function __construct($arreglo=NULL) {
             parent::__construct();
@@ -31,13 +31,14 @@ class clsCompetencias extends clsConexion{
                         $this->total = $arreglo['total'];
                         $this->salida = $arreglo['salida'];
                         $this->becerros = $arreglo['becerros'];
+                        $this->numero = $arreglo['numero'];
                                   }          }
     public function __destruct(){}    
         
     public function cargarCompetencia(){
                 
                 $str = "<option value=''>Seleccione</option>";
-                $sql = "SELECT id_competencia,nombre from mostrar_competencia WHERE fecha = '$this->fecha' AND modalidad='$this->modalidad'";
+                $sql = "SELECT id_competencia,competencia from mostrar_competencia WHERE fecha = '$this->fecha' AND nombre='$this->modalidad'";
                 
                 $datos = $this->filtro($sql);
                 
@@ -48,7 +49,7 @@ class clsCompetencias extends clsConexion{
     public function cargarCompetenciaE(){
                 
                 $str = "<option value=''>Seleccione</option>";
-                $sql = "SELECT id_competencia,nombre from mostrar_competencia_equipos WHERE fecha = '$this->fecha' AND modalidad='$this->modalidad'";
+                $sql = "SELECT id_competencia,competencia from mostrar_competencia_equipos WHERE fecha = '$this->fecha' AND nombre='$this->modalidad'";
                 
                 $datos = $this->filtro($sql);
                 
@@ -57,8 +58,11 @@ class clsCompetencias extends clsConexion{
                 }
                 return $str;            }
                                   
-    public function iniciarCompetencia(){
-                if($this->modalidad=="individual"){
+  
+   public function iniciarCompetencia(){
+             
+
+   if($this->modalidad=="barriles" or $this->modalidad="poste"){
                     
 //                       $update = "UPDATE competencia SET sts='EC' WHERE id_competencia='$this->id_competencia'";
 //                       $this->filtro($update);
@@ -93,7 +97,9 @@ class clsCompetencias extends clsConexion{
                         $str .= "</table>";
                         $this->cerrarConexion();
                         return ($registros > 0) ? $str :0;   }//Fin del IF
-                if($this->modalidad=="grupo"){
+   }
+   public function iniciarCompetenciaE(){
+               if($this->modalidad=="encierro"){
                     //  $update = "UPDATE competencia SET sts='EC' WHERE id_competencia='$this->id_competencia'";
 //                       $this->filtro($update);
        
@@ -109,9 +115,10 @@ class clsCompetencias extends clsConexion{
                                     <tr>
                                     <td>Equipo</td>
                                     <td>Vuelta</td>
+                                    <td>Becerro</td>
+                                    <td>Encierro</td>
                                     <td>Tiempo</td>
-                                    <td>Becerros</td>
-                                    <td><label>Ronda $this->ronda-$this->total&nbsp;&nbsp;</label><img id='flecha' src='../img/arrow455.png' width='25' height='25' title='Siguiente Ronda' onclick=\"nextRound($this->ronda,'$this->total','$this->id_competencia')\" ></td>
+                                    <td><label>Vuelta $this->ronda-$this->total&nbsp;&nbsp;</label><img id='flecha' src='../img/arrow455.png' width='25' height='25' title='Siguiente Ronda' onclick=\"nextRound($this->ronda,'$this->total','$this->id_competencia')\" ></td>
                                     </tr>";
                         $equipos = $this->filtro("SELECT * FROM equipos_aleatorios WHERE id_competencia='$this->id_competencia'");
                         $registros =  $this->getNumRows();
@@ -119,8 +126,9 @@ class clsCompetencias extends clsConexion{
                                     $str .= "<tr>
                                                 <td>$equipo[1]</td>
                                                 <td> $this->ronda</td>
-                                                <td><input type='number' size='5' min='1' max='99.999' step='0.001'  id='tiempof$i' required/></td>
+                                                <td><input type='text' id='numerof$i' required/></td>
                                                 <td><input type='number' size='1' min='1' max='5' step='1'  id='becerrof$i' required/></td>
+                                                <td><input type='number' size='5' min='1' max='99.999' step='0.001'  id='tiempof$i' required/></td>
                                                 <td>
                                                     <img src='../img/notes7.png' width='25' height='25' id='agregarf$i' title='Agregar'  onclick=\"agregarTE(".$i.",'$equipo[0]','$equipo[2]','$this->ronda')\" >
                                                 </td>
@@ -130,8 +138,8 @@ class clsCompetencias extends clsConexion{
                         $this->cerrarConexion();
                         return ($registros > 0) ? $str :0;
                 }
-        
-                }//Fin Funcion Iniciar_Competencia
+                
+                }//Fin Funcion Iniciar_Competencia Equipo
                 
     public function agregarTiempo(){
 
@@ -269,7 +277,7 @@ class clsCompetencias extends clsConexion{
              $row = $this->proximo($r);
              $falla = $row[0] + 1;
              
-             $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta,tiempo,becerro) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo,$this->becerros)") ? true : false;
+             $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta,tiempo,becerro,numero) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo,$this->becerros,$this->numero)") ? true : false;
              
              $sql = "UPDATE ranking SET  falla=$falla  WHERE id_inscripcion='$this->id_inscripcion' ";
              $this->filtro($sql);
@@ -304,7 +312,7 @@ class clsCompetencias extends clsConexion{
              $row = $this->proximo($re);
              $falla2 = $row[0];
              
-             $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta, tiempo,becerro) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo,$this->becerros)") ? true : false;
+             $a= $this->filtro("INSERT INTO ranking(id_inscripcion,salida,vuelta, tiempo,becerro,numero) VALUES ($this->id_inscripcion,$this->salida,$this->ronda, $this->tiempo,$this->becerros,$this->numero)") ? true : false;
           
              $sql = "UPDATE ranking SET  falla=$falla2  WHERE id_inscripcion='$this->id_inscripcion'";
              $this->filtro($sql);
@@ -341,13 +349,14 @@ class clsCompetencias extends clsConexion{
     
    if($this->ronda <= $this->total){
       
-        $str = "<table id='competidores'> 
+       $str = "<table id='competidores'> 
                                     <tr>
                                     <td>Equipo</td>
                                     <td>Vuelta</td>
+                                    <td>Becerro</td>
+                                    <td>Encierro</td>
                                     <td>Tiempo</td>
-                                    <td>Becerros</td>
-                                    <td><label>Ronda $this->ronda-$this->total&nbsp;&nbsp;</label><img id='flecha' src='../img/arrow455.png' width='25' height='25' title='Siguiente Ronda' onclick=\"nextRound($this->ronda,'$this->total','$this->id_competencia')\" ></td>
+                                    <td><label>Vuelta $this->ronda-$this->total&nbsp;&nbsp;</label><img id='flecha' src='../img/arrow455.png' width='25' height='25' title='Siguiente Ronda' onclick=\"nextRound($this->ronda,'$this->total','$this->id_competencia')\" ></td>
                                     </tr>";
                         $equipos = $this->filtro("SELECT * FROM equipos_aleatorios WHERE id_competencia='$this->id_competencia'");
                         $registros =  $this->getNumRows();
@@ -355,8 +364,9 @@ class clsCompetencias extends clsConexion{
                                     $str .= "<tr>
                                                 <td>$equipo[1]</td>
                                                 <td> $this->ronda</td>
-                                                <td><input type='number' size='5' min='1' max='99.999' step='01.001'  id='tiempof$i' required/></td>
+                                                <td><input type='text' id='numerof$i' required/></td>
                                                 <td><input type='number' size='1' min='1' max='5' step='1'  id='becerrof$i' required/></td>
+                                                <td><input type='number' size='5' min='1' max='99.999' step='0.001'  id='tiempof$i' required/></td>
                                                 <td>
                                                     <img src='../img/notes7.png' width='25' height='25' id='agregarf$i' title='Agregar'  onclick=\"agregarTE(".$i.",'$equipo[0]','$equipo[2]','$this->ronda')\" >
                                                 </td>

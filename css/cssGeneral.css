@@ -162,7 +162,8 @@ outline: none;
 }
 #cont{
   
-   
+ margin: 0;
+ padding: 0;
   width: 45px;
   height: 32px;
   display: inline-block;
@@ -172,7 +173,11 @@ outline: none;
 
 .status{
    margin-top: 15px;
-    margin-left: 11px;
+    margin-left: 15px;
+}
+.status img{
+    margin-top: -15px;
+    margin-left: -15px;
 }
 
 img{

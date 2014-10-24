@@ -23,14 +23,14 @@ $('#imgadd').on('click', function() {
             success: function(resp){
                 if(resp == 1){
                     
-                    $('.status').html('<div id="frac"><img width=25 height=25 src="../img/op_exitosa.png"</div>');
+                    $('.status').html('<div id="frac"><img width=28 height=28 src="../img/op_exitosa.png"</div>');
                     $('.status #frac').fadeOut(3000);
                     $('#nombre').val('');
                     $('#edadMin').val('');
                     $('#edadMax').val('');
                 }
                 else{
-                    $('.status').html('<div id="frac"><img width=25 height=25 src="../img/op_fracaso.png"</div>');
+                    $('.status').html('<div id="frac"><img width=28 height=28 src="../img/op_fracaso.png"</div>');
                     $('.status #frac').fadeOut(3000);
                     $('.status').remove('#frac');
                     

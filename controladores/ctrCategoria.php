@@ -6,7 +6,7 @@
         Anthony Filgueira 0426-594.00.45
 */
 if (isset($_POST['opc'])){
-    
+    sleep(1);
     $out = "";
     include ("../modelos/clsCategoria.php");
     

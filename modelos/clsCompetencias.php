@@ -209,7 +209,7 @@ class clsCompetencias extends clsConexion{
                     <td>Competidor</td>
                     <td>Tiempo</td>
                 </tr>";
-         $r = $this->filtro("SELECT * FROM primera_division WHERE id_competencia='$this->id_competencia'");
+         $r = $this->filtro("SELECT nombre,tiempo,id_competencia FROM divisiones_barriles_poste ($this->id_competencia,'PD')");
         $rt =  $this->getNumRows();
         while ($row = $this->proximo($r)) {
               $str .= "<tr>
@@ -232,7 +232,7 @@ class clsCompetencias extends clsConexion{
                     <td>Competidor</td>
                     <td>Tiempo</td>
                 </tr>";
-         $r = $this->filtro("SELECT * FROM segunda_division WHERE id_competencia='$this->id_competencia'");
+         $r = $this->filtro("SELECT nombre,tiempo,id_competencia FROM divisiones_barriles_poste ($this->id_competencia,'SD')");
         $rt =  $this->getNumRows();
         while ($row = $this->proximo($r)) {
               $str .= "<tr>
@@ -255,7 +255,7 @@ class clsCompetencias extends clsConexion{
                     <td>Competidor</td>
                     <td>Tiempo</td>
                 </tr>";
-         $r = $this->filtro("SELECT * FROM tercera_division WHERE id_competencia='$this->id_competencia'");
+         $r = $this->filtro("SELECT nombre,tiempo,id_competencia FROM divisiones_barriles_poste ($this->id_competencia,'TD')");
         $rt =  $this->getNumRows();
         while ($row = $this->proximo($r)) {
               $str .= "<tr>

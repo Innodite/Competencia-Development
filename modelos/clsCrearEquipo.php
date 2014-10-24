@@ -1,16 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of clsCrearEquipo
- *
- * @author merma
- */
-
 include 'clsConexion.php';
 
 class clsCrearEquipo extends clsConexion{

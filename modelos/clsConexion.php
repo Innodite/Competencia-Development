@@ -25,7 +25,7 @@ class clsConexion{
 
   public function filtro($sql){
        $result = pg_query($this->conexion,$sql);
-       $this->rows = pg_num_rows($result);;
+       $this->rows = pg_num_rows($result);
        return $result;
   }
   public function cerrarFiltro($datos){

@@ -6,8 +6,8 @@
 */
 function buscar(){
     var r = send_form("../controladores/ctrCategoria.php", "opc=BS&nombre=" + document.getElementById("nombre").value +
-                                                                 "&agemin=" + document.getElementById("min").value    +
-                                                                 "&agemax=" + document.getElementById("max").value);
+                                                                 "&edadMin=" + document.getElementById("edadMin").value    +
+                                                                 "&edadMax=" + document.getElementById("edadMax").value);
     if (r!='NULL') document.getElementById("list").innerHTML = r;
 }
 
@@ -22,9 +22,9 @@ function actualizar(fila, id){
     var categoria = document.getElementById("tfc"+fila).value;
     var agemin    = document.getElementById("tfemin"+fila).value;
     var agemax    = document.getElementById("tfemax"+fila).value;
-    var r = send_form("../controladores/ctrCategoria.php", "opc=UP&id=" + id + "&nombre=" + categoria + 
-                                                                               "&agemin=" + agemin    +
-                                                                               "&agemax=" + agemax);
+    var r = send_form("../controladores/ctrCategoria.php", "opc=AC&id=" + id + "&nombre=" + categoria + 
+                                                                               "&edadMin=" + agemin    +
+                                                                               "&edadMax=" + agemax);
     if (r){        
         document.getElementById("imgf"+fila).src = "../img/up_med.png";
         document.getElementById("imgf"+fila).onclick =  function(event){ modificar(fila, categoria ,agemin,agemax,id); };
@@ -43,7 +43,7 @@ function modificar(fila,catgria,edmin,edmax,id){
 }
 
 function eliminar(id){
-    var r = send_form("../controladores/ctrCategoria.php", "opc=DL&id=" + id);
+    var r = send_form("../controladores/ctrCategoria.php", "opc=EC&id=" + id);
     if (r) loadStore();
 }
 

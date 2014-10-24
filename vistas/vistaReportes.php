@@ -3,7 +3,8 @@
     if (!isset($_SESSION['perfil']))
         header("Location: ../index.php");
 ?>
-<!--Desarrollado por Innodite 
+<!--
+Desarrollado por www.innodite.com
     RIF:  J-40270256-6
     Contacto
         Javier Urbano     0416-583.38.09

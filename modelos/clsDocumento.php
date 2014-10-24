@@ -32,7 +32,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
     if($modalidad == INDIVIDUAL){
         
     //Listado General 
-    $sql = "SELECT nombre,tiempo,vuelta,salida,id_competencia
+    $sql = "SELECT nombre,COALESCE(tiempo::text, 'N/T'::text) AS tiempo,vuelta,salida,id_competencia
             FROM ranking rank,inscripcion insc,competidor compe 
             WHERE rank.id_inscripcion = insc.id_inscripcion 
             AND insc.cedula = compe.cedula AND insc.id_competencia=$comp"."ORDER BY 3,4";
@@ -72,7 +72,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
          $pdf->titulo('Primera Division', 20, $contador2-10);
          $pdf->BasicTable($header2,50,$contador2+8);
          $j = 1;
-         $datos3 = $bd->filtro("select * from primera_division WHERE id_competencia = '$comp'");
+         $datos3 = $bd->filtro("SELECT nombre,tiempo,id_competencia FROM divisiones_barriles_poste ($comp,'PD') ");
          $out3 = array();
             while($columna3 = $bd->proximo($datos3)){
                      $out3[] = array(
@@ -88,7 +88,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
          $pdf->titulo('Segunda Division', 20, $contador3-10);
          $pdf->BasicTable($header2,50,$contador3+8);
          $q = 1;
-         $datos4 = $bd->filtro("select * from segunda_division WHERE id_competencia = '$comp'");
+         $datos4 = $bd->filtro("SELECT nombre,tiempo,id_competencia FROM divisiones_barriles_poste ($comp,'SD')");
          $out4 = array();
             while($columna4 = $bd->proximo($datos4)){
                      $out4[] = array(
@@ -104,7 +104,7 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
         $pdf->titulo('Tercera Division', 20, $contador4-10);
          $pdf->BasicTable($header2,50,$contador4+8);
          $q = 1;
-         $datos5 = $bd->filtro("select * from tercera_division WHERE id_competencia = '$comp'");
+         $datos5 = $bd->filtro("SELECT nombre,tiempo,id_competencia FROM divisiones_barriles_poste ($comp,'TD')");
          $out5 = array();
             while($columna5 = $bd->proximo($datos5)){
                      $out5[] = array(
@@ -120,14 +120,28 @@ $modalidad = isset($_GET['modalidad']) ? $_GET['modalidad'] : "";
         $pdf->titulo('No Clasificados', 20, $contador5-10);
          $pdf->BasicTable($header2,50,$contador5+8);
          $f = 1;
-         $datos6 = $bd->filtro("select * from no_clasificados WHERE id_competencia = '$comp' ORDER BY 2");
+         $datos6 = $bd->filtro("SELECT nombre,tiempo,id_competencia FROM divisiones_barriles_poste ($comp,'NC') ORDER BY 2");
          $out6 = array();
             while($columna6 = $bd->proximo($datos6)){
-                     $out6[] = array(
+                  IF($columna6[1]=='99.999'){
+                             $nuevo_tiempo=str_replace('99.999','N/T',$columna6[1]);
+                             
+                       $out6[] = array(
+                         'nombre'=>$columna6[0],
+                         'tiempo'=>$nuevo_tiempo,
+                         'posicion'=>$f); 
+                       
+                        $f++; 
+                         }
+                   ELSE{
+                       $out6[] = array(
                          'nombre'=>$columna6[0],
                          'tiempo'=>$columna6[1],
                          'posicion'=>$f); 
-                       $f++; 
+                       
+                        $f++; 
+                   }
+                    
                 }
          $bd->cerrarFiltro($datos6);
          $bd->cerrarConexion();    

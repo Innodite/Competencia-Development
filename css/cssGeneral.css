@@ -4,6 +4,7 @@
     padding: 0;
 }
 
+
 @font-face {
     font-family: vaquera1;
     src: url("../fuentes/Carnevalee-Freakshow.ttf");
@@ -158,6 +159,20 @@ input {
 width: 25px;
 outline: none;
 
+}
+#cont{
+  
+   
+  width: 45px;
+  height: 32px;
+  display: inline-block;
+ 
+}
+
+
+.status{
+   margin-top: 15px;
+    margin-left: 11px;
 }
 
 img{

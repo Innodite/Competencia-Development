@@ -2,11 +2,12 @@
 <html>
     <head>
          <meta charset="UTF-8">
+         
         
          <title>Control de Acceso</title>
         
         <!-- <link href="http://www.dafont.com/es/the-dead-saloon.font/css?family=thedeadsaloon-regular" type="text/css" rel="stylesheet" />-->
-       
+        
         <link rel="stylesheet" href="css/index.css" type="text/css">
     <body>
         <header id="header">

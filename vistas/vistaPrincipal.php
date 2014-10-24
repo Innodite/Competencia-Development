@@ -8,6 +8,7 @@
     <head>
         <meta charset="UTF-8">
          <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+         <link rel="shortcut icon" type="text/<-icon" href="../favicon.ico"/>
         <title>Principal</title>
         <!-- <link href="http://www.dafont.com/es/the-dead-saloon.font/css?family=thedeadsaloon-regular" type="text/css" rel="stylesheet" />-->
           <link rel="stylesheet" href="../css/slider.css" type="text/css" />
@@ -41,7 +42,7 @@
                         <div id="wrapper">
                                  <div class="slider-wrapper slideshow">
                                     <div id="slider" class="nivoSlider">
-                                         <img src="../img/slider/caballo1.jpg"/>                                        
+                                        <img src="../img/slider/caballo1.jpg"/>                                        
                                         <img src="../img/slider/caballo2.jpg"/>
                                         <img src="../img/slider/caballo3.jpg"/>
                                         <img src="../img/slider/caballo4.jpg"/>

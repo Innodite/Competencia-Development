@@ -1,5 +1,5 @@
 <?php
-/*Desarrollado por Innodite 
+/*Desarrollado por www.innodite.com
     RIF:  J-40270256-6
     Contacto
         Javier Urbano     0416-583.38.09
@@ -10,20 +10,21 @@ if (isset($_POST['opc'])){
     $out = "";
     include ("../modelos/clsCategoria.php");
     
-    $name = isset($_POST['nombre']) ? $_POST['nombre'] : null;
-    $emin = isset($_POST['agemin']) ? $_POST['agemin'] : null;
-    $emax = isset($_POST['agemax']) ? $_POST['agemax'] : null;
-    $id   = isset($_POST['id'])     ? $_POST['id']     : null;
+    $nombre     = isset($_POST['nombre'])       ? $_POST['nombre']      : null;
+    $edadMin    = isset($_POST['edadMin'])      ? $_POST['edadMin']     : null;
+    $edadMax    = isset($_POST['edadMax'])      ? $_POST['edadMax']     : null;
+    $id         = isset($_POST['id'])           ? $_POST['id']          : null;
+    $operacion  = isset($_POST['opc'])          ? $_POST['opc']         : null;
     
-    $p = array("nombre"=>$name,"agemin"=>$emin,"agemax"=>$emax, "id"=>$id);
-    $ob = new clsCategoria($p);
+    $arreglo = array("nombre"=>$nombre,"edadMin"=>$edadMin,"edadMax"=>$edadMax, "operacion"=>$operacion, "id"=>$id);
+    $categoria  = new clsCategoria($arreglo);
     
     switch ($_POST['opc']) {
-        case "IN": $out = $ob->insertar();      break;
-        case "UP": $out = $ob->modificar($p);   break;
-        case "DL": $out = $ob->eliminar($p);    break;
-        case "LS": $out = $ob->listarTabla();   break;
-        case "BS": $out = $ob->listarTabla($p); break;
+        case "IC": $out = $categoria->insertarCategoria();          break;
+        case "AC": $out = $categoria->actualizarCategoria();        break;
+        case "EC": $out = $categoria->eliminarCategoria();          break;
+        case "LS": $out = $categoria->listarTabla();                break;
+        case "BS": $out = $categoria->listarTabla($p);              break;
         default: break;
     }
     echo $out;

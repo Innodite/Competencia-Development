@@ -13,12 +13,11 @@ $('#imgadd').on('click', function() {
     $.ajax({
             beforeSend: function(){
                $('.status').spin({top:3,left:3,radius:3,width:2,height:2,length:6}); 
-               
-                                    },
+                                },
             type:"POST",
             url:"../controladores/ctrCategoria.php",
             data: {
-                nombre: nombre, edadMin: edadMin, edadMax: edadMax, opc: opc
+                   nombre: nombre, edadMin: edadMin, edadMax: edadMax, opc: opc
                     },
             success: function(resp){
                 if(resp == 1){
@@ -31,14 +30,19 @@ $('#imgadd').on('click', function() {
                 }
                 else{
                     $('.status').html('<div id="frac"><img width=28 height=28 src="../img/op_fracaso.png"</div>');
-                    $('.status #frac').fadeOut(3000);
-                    $('.status').remove('#frac');
-                    
-                }
-            }
-            });
-            });
-
+                    $('.status #frac').fadeOut(3000);  
+                    }
+                                    }
+            });});//Fin Agregar Categoria
+       
+    //Buscar Lista de Categorias
+        $('#imgbus').on("click",function(){
+            
+            
+            
+            
+            
+        });
     
 });    
     

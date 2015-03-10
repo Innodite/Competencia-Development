@@ -120,7 +120,7 @@ $(document).on("ready", function() {
             // head tabla
             $('#list table').append("<tr><td class='truco'>Cedula</td><td class='truco'>Nombre</td><td class='truco'>Edad</td><td class='truco'>Competencia</td><td></td></tr>");
                 $.each(inscripcion, function(index, valor) {
-                   $('#list table').append("<tr><td>" + valor['cedula'] + "</td><td>" + valor['nombre'] + "</td><td>"+valor['edad']+"</td><td>"+valor['competencia']+"</td>"+"<td><img id='va"+index+"'  title='Buscar'  src='../img/del_med.png'></td>"+"</tr>");
+                   $('#list table').append("<tr><td>" + valor['cedula'] + "</td><td>" + valor['nombre'] + "</td><td>"+valor['edad']+"</td><td>"+valor['competencia']+"</td>"+"<td><img id='va"+index+"'  title='Eliminar'  src='../img/del_med.png'></td>"+"</tr>");
                    $('#va'+index).on('click', function() {
                        var opc = 'DEL';
                        var id = valor['id_inscripcion'];
